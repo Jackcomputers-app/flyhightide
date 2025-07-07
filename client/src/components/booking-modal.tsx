@@ -43,16 +43,55 @@ export const BookingModal = ({ isOpen, onClose, initialLocation }: BookingModalP
   const handleCompleteBooking = async () => {
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    toast({
-      title: "Booking Confirmed!",
-      description: "Your tour has been booked successfully. You'll receive a confirmation email shortly.",
-    });
-    
-    handleClose();
+    try {
+      if (!booking.tour) {
+        throw new Error("No tour selected");
+      }
+
+      const bookingData = {
+        location: booking.location!,
+        tourId: booking.tour.id,
+        tourName: booking.tour.name,
+        passengers: booking.passengers,
+        totalWeight: booking.totalWeight,
+        leadPassengerName: booking.leadPassengerName,
+        contactEmail: booking.contactEmail,
+        contactPhone: booking.contactPhone,
+        preferredDate: booking.preferredDate || null,
+        specialRequests: booking.specialRequests || null,
+        totalPrice: getTotalPrice().toString(),
+        status: "confirmed"
+      };
+
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create booking');
+      }
+
+      const savedBooking = await response.json();
+      
+      setIsSubmitting(false);
+      toast({
+        title: "Booking Confirmed!",
+        description: `Your tour has been booked successfully. Booking ID: ${savedBooking.id}. You'll receive a confirmation email shortly.`,
+      });
+      
+      handleClose();
+    } catch (error) {
+      setIsSubmitting(false);
+      toast({
+        title: "Booking Failed",
+        description: "There was an error creating your booking. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const locationTours = booking.location ? tours.filter(t => t.location === booking.location) : [];

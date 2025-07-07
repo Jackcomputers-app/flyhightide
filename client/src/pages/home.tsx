@@ -85,6 +85,12 @@ export default function Home() {
                 >
                   Reviews
                 </button>
+                <a
+                  href="/bookings"
+                  className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors"
+                >
+                  View Bookings
+                </a>
                 <Button
                   onClick={() => openBooking()}
                   className="bg-ocean-blue hover:bg-blue-600 text-white font-medium"
@@ -136,6 +142,12 @@ export default function Home() {
               >
                 Reviews
               </button>
+              <a
+                href="/bookings"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-ocean-blue"
+              >
+                View Bookings
+              </a>
               <Button
                 onClick={() => openBooking()}
                 className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium"
