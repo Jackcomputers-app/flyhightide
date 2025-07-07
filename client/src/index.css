@@ -13,7 +13,7 @@
   --card-foreground: hsl(20, 14.3%, 4.1%);
   --border: hsl(20, 5.9%, 90%);
   --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(207, 90%, 54%);
+  --primary: hsl(200, 89%, 47%);
   --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(210, 13%, 95%);
   --secondary-foreground: hsl(24, 9.8%, 10%);
@@ -24,13 +24,15 @@
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
   
-  /* Coastal Color Palette */
-  --ocean-blue: hsl(207, 90%, 54%);
-  --coastal-teal: hsl(178, 68%, 29%);
-  --sandy-beige: hsl(45, 30%, 95%);
-  --soft-gray: hsl(215, 16%, 47%);
-  --light-blue: hsl(207, 89%, 86%);
-  --warm-sand: hsl(47, 55%, 88%);
+  /* High Tide Aviation Brand Colors */
+  --ocean-blue: hsl(200, 89%, 47%);
+  --coastal-teal: hsl(195, 79%, 35%);
+  --sandy-beige: hsl(48, 28%, 96%);
+  --soft-gray: hsl(210, 12%, 52%);
+  --light-blue: hsl(200, 75%, 85%);
+  --warm-sand: hsl(48, 45%, 92%);
+  --navy-blue: hsl(210, 100%, 25%);
+  --accent-orange: hsl(25, 85%, 60%);
 }
 
 .dark {
@@ -44,7 +46,7 @@
   --card-foreground: hsl(0, 0%, 98%);
   --border: hsl(240, 3.7%, 15.9%);
   --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(207, 90%, 54%);
+  --primary: hsl(200, 89%, 47%);
   --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(240, 3.7%, 15.9%);
   --secondary-foreground: hsl(0, 0%, 98%);
@@ -68,7 +70,7 @@
 
 @layer utilities {
   .ocean-blue {
-    background-color: hsl(207, 90%, 54%);
+    background-color: hsl(200, 89%, 47%);
   }
   
   .coastal-teal {
@@ -84,7 +86,7 @@
   }
   
   .text-ocean-blue {
-    color: hsl(207, 90%, 54%);
+    color: hsl(200, 89%, 47%);
   }
   
   .text-coastal-teal {
@@ -92,7 +94,7 @@
   }
   
   .bg-ocean-blue {
-    background-color: hsl(207, 90%, 54%);
+    background-color: hsl(200, 89%, 47%);
   }
   
   .bg-coastal-teal {
@@ -112,14 +114,14 @@
   }
   
   .border-ocean-blue {
-    border-color: hsl(207, 90%, 54%);
+    border-color: hsl(200, 89%, 47%);
   }
   
   .hover\:bg-ocean-blue:hover {
-    background-color: hsl(207, 90%, 54%);
+    background-color: hsl(200, 89%, 47%);
   }
   
   .hover\:bg-blue-600:hover {
-    background-color: hsl(207, 90%, 48%);
+    background-color: hsl(200, 89%, 42%);
   }
 }

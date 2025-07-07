@@ -27,7 +27,7 @@ export const tours: Tour[] = [
     description: 'Scenic coastal flight along beautiful beaches with stunning ocean views',
     location: 'southport',
     features: ['Coastal beaches', 'Ocean views', 'Perfect for first-timers'],
-    image: 'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&h=400&fit=crop'
+    image: 'https://flyhightide.com/_astro/high-tide-aviation-team-southport.Xj9jwjZu.jpg'
   },
   {
     id: 'southport-oak-island',
@@ -41,7 +41,7 @@ export const tours: Tour[] = [
     description: 'Explore Oak Island\'s pristine shores and historic sites from above',
     location: 'southport',
     features: ['Oak Island beaches', 'Historic sites', 'Pristine coastline'],
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop'
+    image: 'https://flyhightide.com/_astro/HTA-map-southport.DWpsbb3K.jpg'
   },
   {
     id: 'southport-lighthouse',
@@ -112,7 +112,7 @@ export const tours: Tour[] = [
     description: 'Scenic flight over Jekyll Island\'s natural wonders and beaches',
     location: 'st-simons',
     features: ['Jekyll Island', 'Natural wonders', 'Pristine beaches'],
-    image: 'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&h=400&fit=crop'
+    image: 'https://flyhightide.com/_astro/high-tide-helicopter-with-pilot-ready-to-takeoff.FFBadvWW.jpg'
   },
   {
     id: 'st-simons-golden-isles',
@@ -136,7 +136,7 @@ export const locations = [
     name: 'Southport, NC',
     description: 'Helicopter + Airplane Tours Available',
     note: 'Helicopter tours only available at this location',
-    image: 'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&h=400&fit=crop',
+    image: 'https://flyhightide.com/_astro/high-tide-aviation-team-southport.Xj9jwjZu.jpg',
     tours: tours.filter(t => t.location === 'southport')
   },
   {
@@ -144,7 +144,7 @@ export const locations = [
     name: 'St Simons Island, GA',
     description: 'Airplane Tours Only',
     note: 'Scenic airplane tours of Golden Isles',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop',
+    image: 'https://flyhightide.com/_astro/st-simons-island-ga-tour-map-high-tide-aviation-aerial-tours.B9FcXsEV.jpg',
     tours: tours.filter(t => t.location === 'st-simons')
   }
 ];

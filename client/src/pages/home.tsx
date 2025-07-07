@@ -5,6 +5,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { LocationCard } from '@/components/location-card';
 import { TestimonialCard } from '@/components/testimonial-card';
 import { BookingModal } from '@/components/booking-modal';
+import { Logo } from '@/components/logo';
 import { locations } from '@/data/tours';
 import { testimonials, getRandomTestimonials } from '@/data/testimonials';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -53,7 +54,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <h1 className="text-xl font-bold text-ocean-blue">High Tide Aviation</h1>
+                <Logo size="md" />
               </div>
             </div>
             
@@ -151,7 +152,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080")'
+            backgroundImage: 'url("https://flyhightide.com/_astro/high-tide-helicopter-with-pilot-ready-to-takeoff.FFBadvWW.jpg")'
           }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-40" />
@@ -334,7 +335,7 @@ export default function Home() {
                       <div>
                         <h4 className="font-medium text-gray-900 mb-2">What's the minimum passenger count?</h4>
                         <p className="text-gray-600">
-                          Ambulance tours require a minimum of 2 passengers. Airplane tours have no minimum requirement.
+                          Helicopter tours require a minimum of 2 passengers. Airplane tours have no minimum requirement.
                         </p>
                       </div>
                       <div>
