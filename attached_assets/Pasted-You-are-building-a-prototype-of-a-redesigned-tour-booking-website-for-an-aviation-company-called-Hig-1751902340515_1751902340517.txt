@@ -1,0 +1,49 @@
+You are building a prototype of a redesigned tour booking website for an aviation company called High Tide Aviation. This website must address key usability complaints from real users who have said the current site is "clunky" and hard to book tours.
+
+Design Requirements:
+
+1. **Homepage**
+   - Clean, minimalist layout with a prominent “Book a Tour” button in the header and a sticky version that follows the user as they scroll.
+   - Use collapsible sections for “About Us,” “FAQs,” “Testimonials,” and “Contact.”
+
+2. **Booking Flow**
+   - Launches a modal or dedicated booking section when “Book a Tour” is clicked.
+   - The booking process must include **4 clearly marked steps** with a visual progress bar:
+     1. Select Location (e.g., Southport, NC, Wilmington, etc.)
+     2. Choose a Tour (show cards with images, tour length, price, and passenger constraints)
+     3. Enter Passenger Info (with min/max limits and weight requirements visible)
+     4. Confirm & Pay (mocked-out payment interface; no real payment integration needed)
+
+3. **Constraint Visibility**
+   - Each tour card must show:
+     - Minimum/maximum passengers
+     - Weight limits
+     - Flight duration
+     - Price per person
+   - Clearly state if a tour requires a minimum of 2 passengers.
+
+4. **Trust-Building Elements**
+   - Display 1–2 short testimonials with each tour card or at the confirmation step.
+   - Optional: Add a “Why Fly With Us?” section with brief bullets near booking steps.
+
+5. **Mobile Optimization**
+   - Design must follow mobile-first principles:
+     - One major action per screen
+     - Touch-friendly buttons
+     - Sticky navigation bar
+     - Always-visible progress indicator during booking flow
+
+6. **General Aesthetic**
+   - Use clean fonts (like Inter, Open Sans, or Roboto)
+   - Calm, coastal color scheme (light blues, sand tones, soft grays)
+   - Rounded buttons and simple icons (optional)
+
+7. **No real backend required** — mock the booking data flow using front-end state management. The purpose is to prototype and demonstrate the usability redesign.
+
+Project Goal:
+Build a fully responsive prototype that follows these UX principles and flows, so it can be shared with stakeholders and used for user testing. Prioritize speed, clarity, and user confidence in the booking experience.
+
+Technology Stack:
+Use React or HTML/CSS/JS with Bootstrap or Tailwind CSS. No database or API integration needed.
+
+Name the project: `HighTide-TourRedesign-Prototype`
