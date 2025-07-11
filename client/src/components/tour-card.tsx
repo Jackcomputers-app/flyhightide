@@ -15,20 +15,20 @@ interface TourCardProps {
 export const TourCard = ({ tour, selected, onSelect, className }: TourCardProps) => {
   const randomTestimonial = testimonials[Math.floor(Math.random() * testimonials.length)];
   
-  const getRouteColorClass = (color: string) => {
+  const getRouteColorStyle = (color: string) => {
     switch (color) {
       case 'yellow':
-        return 'bg-yellow-500 text-black';
+        return { backgroundColor: '#facc15', color: '#000', borderColor: '#eab308' };
       case 'orange':
-        return 'bg-orange-500 text-white';
+        return { backgroundColor: '#fb923c', color: '#fff', borderColor: '#ea580c' };
       case 'blue':
-        return 'bg-blue-500 text-white';
+        return { backgroundColor: '#60a5fa', color: '#fff', borderColor: '#3b82f6' };
       case 'purple':
-        return 'bg-purple-500 text-white';
+        return { backgroundColor: '#a78bfa', color: '#fff', borderColor: '#8b5cf6' };
       case 'red':
-        return 'bg-red-500 text-white';
+        return { backgroundColor: '#f87171', color: '#fff', borderColor: '#ef4444' };
       default:
-        return 'bg-gray-500 text-white';
+        return { backgroundColor: '#9ca3af', color: '#fff', borderColor: '#6b7280' };
     }
   };
   
@@ -54,8 +54,11 @@ export const TourCard = ({ tour, selected, onSelect, className }: TourCardProps)
             <div className="flex items-center gap-2 mb-2">
               <h3 className="text-xl font-semibold text-gray-900">{tour.name}</h3>
               {tour.routeColor && (
-                <Badge className={`text-xs font-bold ${getRouteColorClass(tour.routeColor)}`}>
-                  {tour.routeColor.toUpperCase()}
+                <Badge 
+                  className="text-xs font-bold border-2"
+                  style={getRouteColorStyle(tour.routeColor)}
+                >
+                  {tour.routeColor.toUpperCase()} ROUTE
                 </Badge>
               )}
             </div>
