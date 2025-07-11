@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { LocationCard } from '@/components/location-card';
 import { TestimonialCard } from '@/components/testimonial-card';
-import { BookingModal } from '@/components/booking-modal';
+import { SimpleBookingModal } from '@/components/simple-booking-modal';
 import { Logo } from '@/components/logo';
 import { locations } from '@/data/tours';
 import { testimonials, getRandomTestimonials } from '@/data/testimonials';
@@ -521,7 +521,7 @@ export default function Home() {
       </footer>
 
       {/* Booking Modal */}
-      <BookingModal
+      <SimpleBookingModal
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
         initialLocation={selectedLocation}
