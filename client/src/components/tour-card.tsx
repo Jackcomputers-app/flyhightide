@@ -15,6 +15,23 @@ interface TourCardProps {
 export const TourCard = ({ tour, selected, onSelect, className }: TourCardProps) => {
   const randomTestimonial = testimonials[Math.floor(Math.random() * testimonials.length)];
   
+  const getRouteColorClass = (color: string) => {
+    switch (color) {
+      case 'yellow':
+        return 'bg-yellow-500 text-black';
+      case 'orange':
+        return 'bg-orange-500 text-white';
+      case 'blue':
+        return 'bg-blue-500 text-white';
+      case 'purple':
+        return 'bg-purple-500 text-white';
+      case 'red':
+        return 'bg-red-500 text-white';
+      default:
+        return 'bg-gray-500 text-white';
+    }
+  };
+  
   return (
     <Card
       className={cn(
@@ -33,11 +50,18 @@ export const TourCard = ({ tour, selected, onSelect, className }: TourCardProps)
       </div>
       <CardContent className="p-6">
         <div className="flex justify-between items-start mb-3">
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900">{tour.name}</h3>
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <h3 className="text-xl font-semibold text-gray-900">{tour.name}</h3>
+              {tour.routeColor && (
+                <Badge className={`text-xs font-bold ${getRouteColorClass(tour.routeColor)}`}>
+                  {tour.routeColor.toUpperCase()}
+                </Badge>
+              )}
+            </div>
             <p className="text-gray-600 text-sm mt-1">{tour.description}</p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 ml-4 flex-shrink-0">
             {tour.type === 'helicopter' ? (
               <Ambulance className="w-5 h-5 text-ocean-blue" />
             ) : (
