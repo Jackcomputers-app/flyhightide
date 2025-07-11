@@ -28,6 +28,7 @@ export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<string | undefined>();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLocationMenuOpen, setIsLocationMenuOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const randomTestimonials = getRandomTestimonials(3);
@@ -44,6 +45,14 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
+  };
+
+  const scrollToLocation = (locationId: string) => {
+    const element = document.getElementById(`location-${locationId}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsLocationMenuOpen(false);
   };
 
   return (
@@ -171,25 +180,65 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Let's Fly Above</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Choose Your Location</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Experience the breathtaking beauty of the Carolina and Georgia coasts from a bird's eye view
           </p>
-          <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-            <Button
-              onClick={() => openBooking()}
-              size="lg"
-              className="w-full sm:w-auto bg-ocean-blue hover:bg-blue-600 text-white px-8 py-4 text-lg font-semibold"
-            >
-              Book Your Adventure
-            </Button>
+          
+          <div className="max-w-md mx-auto">
+            <Collapsible open={isLocationMenuOpen} onOpenChange={setIsLocationMenuOpen}>
+              <CollapsibleTrigger asChild>
+                <Button
+                  size="lg"
+                  className="w-full bg-ocean-blue hover:bg-blue-600 text-white px-8 py-4 text-lg font-semibold flex items-center justify-between"
+                >
+                  Select Your Tour Location
+                  <ChevronDown className={`h-5 w-5 transition-transform ${isLocationMenuOpen ? 'rotate-180' : ''}`} />
+                </Button>
+              </CollapsibleTrigger>
+              
+              <CollapsibleContent className="mt-4 space-y-2">
+                <Button
+                  onClick={() => scrollToLocation('wilmington')}
+                  size="lg"
+                  variant="outline"
+                  className="w-full bg-white/90 border-2 border-white text-gray-900 hover:bg-white hover:text-gray-800 px-6 py-3 text-base font-medium"
+                >
+                  <MapPin className="w-5 h-5 mr-2" />
+                  Wilmington, NC
+                </Button>
+                
+                <Button
+                  onClick={() => scrollToLocation('southport')}
+                  size="lg"
+                  variant="outline"
+                  className="w-full bg-white/90 border-2 border-white text-gray-900 hover:bg-white hover:text-gray-800 px-6 py-3 text-base font-medium"
+                >
+                  <MapPin className="w-5 h-5 mr-2" />
+                  Southport, NC
+                </Button>
+                
+                <Button
+                  onClick={() => scrollToLocation('st-simons')}
+                  size="lg"
+                  variant="outline"
+                  className="w-full bg-white/90 border-2 border-white text-gray-900 hover:bg-white hover:text-gray-800 px-6 py-3 text-base font-medium"
+                >
+                  <MapPin className="w-5 h-5 mr-2" />
+                  St Simons Island, GA
+                </Button>
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
+          
+          <div className="mt-6">
             <Button
               onClick={() => scrollToSection('locations')}
               size="lg"
-              variant="outline"
-              className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-semibold"
+              variant="ghost"
+              className="text-white hover:text-gray-200 underline"
             >
-              Learn More
+              View All Locations
             </Button>
           </div>
         </div>
@@ -207,11 +256,12 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {locations.map((location) => (
-              <LocationCard
-                key={location.id}
-                location={location}
-                onExplore={(locationId) => openBooking(locationId)}
-              />
+              <div key={location.id} id={`location-${location.id}`}>
+                <LocationCard
+                  location={location}
+                  onExplore={(locationId) => openBooking(locationId)}
+                />
+              </div>
             ))}
           </div>
         </div>
