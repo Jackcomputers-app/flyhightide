@@ -112,7 +112,7 @@ export const BookingModal = ({ isOpen, onClose, initialLocation }: BookingModalP
           {booking.step === 1 && (
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-gray-900">Select Your Location</h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {locations.map((location) => (
                   <LocationCard
                     key={location.id}

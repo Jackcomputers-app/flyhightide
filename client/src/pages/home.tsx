@@ -205,7 +205,7 @@ export default function Home() {
             <p className="text-lg text-gray-600">Choose your coastline adventure</p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {locations.map((location) => (
               <LocationCard
                 key={location.id}

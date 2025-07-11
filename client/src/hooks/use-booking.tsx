@@ -77,6 +77,8 @@ export const useBooking = () => {
         return 'Southport, NC';
       case 'st-simons':
         return 'St Simons Island, GA';
+      case 'wilmington':
+        return 'Wilmington, NC';
       default:
         return '';
     }

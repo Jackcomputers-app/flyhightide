@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a prototype of a redesigned tour booking website for High Tide Aviation, an aviation company offering scenic helicopter and airplane tours. The project addresses key usability complaints by implementing a clean, intuitive booking flow with clear step-by-step progression and prominent constraint visibility.
+This is a prototype of a redesigned tour booking website for High Tide Aviation, an aviation company offering scenic helicopter and airplane tours across three locations: Southport NC, St Simons Island GA, and Wilmington NC. The project addresses key usability complaints by implementing a clean, intuitive booking flow with clear step-by-step progression and prominent constraint visibility.
 
 ## System Architecture
 
@@ -56,9 +56,10 @@ This is a prototype of a redesigned tour booking website for High Tide Aviation,
 - **Progress Tracking**: Step-by-step navigation with validation gates
 
 ### Data Models
-- **Tour Interface**: Includes pricing, duration, passenger limits, weight constraints
-- **Location Interface**: Tour venue information and available tours
-- **Booking State**: Complete booking flow state management
+- **Tour Interface**: Includes pricing, duration, passenger limits, weight constraints for three locations
+- **Location Interface**: Tour venue information and available tours for Southport NC, St Simons Island GA, and Wilmington NC
+- **Booking State**: Complete booking flow state management with three-location support
+- **Database Schema**: PostgreSQL tables for users and bookings with Drizzle ORM
 
 ## External Dependencies
 
@@ -99,3 +100,6 @@ Preferred communication style: Simple, everyday language.
 
 Changelog:
 - July 07, 2025. Initial setup
+- July 11, 2025. Added PostgreSQL database with Drizzle ORM for booking persistence
+- July 11, 2025. Added third location (Wilmington, NC) with 5 new tours from PDF content
+- July 11, 2025. Updated UI to support three-location grid layout and booking flow
