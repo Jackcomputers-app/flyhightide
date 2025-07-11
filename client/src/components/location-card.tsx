@@ -29,6 +29,23 @@ export const LocationCard = ({
   const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
   const hasAirplane = location.tours.some(t => t.type === 'airplane');
 
+  const getRouteColorStyle = (color: string) => {
+    switch (color) {
+      case 'yellow':
+        return { backgroundColor: '#facc15', color: '#000', borderColor: '#eab308' };
+      case 'orange':
+        return { backgroundColor: '#fb923c', color: '#fff', borderColor: '#ea580c' };
+      case 'blue':
+        return { backgroundColor: '#60a5fa', color: '#fff', borderColor: '#3b82f6' };
+      case 'purple':
+        return { backgroundColor: '#a78bfa', color: '#fff', borderColor: '#8b5cf6' };
+      case 'red':
+        return { backgroundColor: '#f87171', color: '#fff', borderColor: '#ef4444' };
+      default:
+        return { backgroundColor: '#9ca3af', color: '#fff', borderColor: '#6b7280' };
+    }
+  };
+
   return (
     <Card
       className={cn(
@@ -69,7 +86,12 @@ export const LocationCard = ({
         <div className="mb-4">
           <div className="flex flex-wrap gap-2">
             {location.tours.map((tour, index) => (
-              <Badge key={index} variant="outline" className="text-xs">
+              <Badge 
+                key={index} 
+                variant="outline" 
+                className="text-xs font-medium border-2"
+                style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
+              >
                 {tour.name}
               </Badge>
             ))}
