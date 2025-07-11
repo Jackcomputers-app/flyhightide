@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plane, MapPin, Wind } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LocationCardProps {
@@ -76,19 +76,9 @@ export const LocationCard = ({
         />
       </div>
       <CardContent className="p-6">
-        <div className="flex justify-between items-start mb-3">
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900">{location.name}</h3>
-            <p className="text-gray-600 text-sm mt-1">{location.description}</p>
-          </div>
-          <div className="flex items-center space-x-1">
-            {hasHelicopter && (
-              <Wind className="w-5 h-5 text-ocean-blue" />
-            )}
-            {hasAirplane && (
-              <Plane className="w-5 h-5 text-ocean-blue" />
-            )}
-          </div>
+        <div className="mb-3">
+          <h3 className="text-xl font-semibold text-gray-900">{location.name}</h3>
+          <p className="text-gray-600 text-sm mt-1">{location.description}</p>
         </div>
 
         <div className="flex items-center mb-4">
