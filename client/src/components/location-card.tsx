@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plane, Ambulance, MapPin } from 'lucide-react';
+import { Plane, MapPin, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LocationCardProps {
@@ -28,6 +28,15 @@ export const LocationCard = ({
 }: LocationCardProps) => {
   const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
   const hasAirplane = location.tours.some(t => t.type === 'airplane');
+  
+  // Calculate pricing information
+  const helicopterTours = location.tours.filter(t => t.type === 'helicopter');
+  const airplaneTours = location.tours.filter(t => t.type === 'airplane');
+  const allTours = location.tours;
+  
+  const minHelicopterPrice = helicopterTours.length > 0 ? Math.min(...helicopterTours.map(t => t.price)) : 0;
+  const minAirplanePrice = airplaneTours.length > 0 ? Math.min(...airplaneTours.map(t => t.price)) : 0;
+  const minOverallPrice = allTours.length > 0 ? Math.min(...allTours.map(t => t.price)) : 0;
 
   const getRouteColorStyle = (color: string) => {
     switch (color) {
@@ -74,7 +83,7 @@ export const LocationCard = ({
           </div>
           <div className="flex items-center space-x-1">
             {hasHelicopter && (
-              <Ambulance className="w-5 h-5 text-ocean-blue" />
+              <Zap className="w-5 h-5 text-ocean-blue" />
             )}
             {hasAirplane && (
               <Plane className="w-5 h-5 text-ocean-blue" />
@@ -85,6 +94,28 @@ export const LocationCard = ({
         <div className="flex items-center mb-4">
           <MapPin className="w-4 h-4 text-coastal-teal mr-2" />
           <span className="text-sm text-gray-600">{location.note}</span>
+        </div>
+
+        {/* Pricing Information */}
+        <div className="mb-4">
+          {location.id === 'southport' ? (
+            <div className="space-y-1">
+              {hasAirplane && (
+                <p className="text-sm text-gray-700">
+                  Airplane tours start at <span className="font-semibold text-ocean-blue">${minAirplanePrice}</span>
+                </p>
+              )}
+              {hasHelicopter && (
+                <p className="text-sm text-gray-700">
+                  Helicopter tours start at <span className="font-semibold text-ocean-blue">${minHelicopterPrice}</span>
+                </p>
+              )}
+            </div>
+          ) : (
+            <p className="text-sm text-gray-700">
+              Tours start at <span className="font-semibold text-ocean-blue">${minOverallPrice}</span>
+            </p>
+          )}
         </div>
 
         <div className="mb-4">
