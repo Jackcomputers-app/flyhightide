@@ -1,4 +1,5 @@
 import southportTourMap from '@assets/Southport Tour Map July 2025_1752252741987.webp';
+import wilmingtonTourMap from '@assets/ILM Tours July 2025 no labels_1752254832578.png';
 
 export interface Tour {
   id: string;
@@ -225,7 +226,7 @@ export const locations = [
     name: 'Wilmington, NC',
     description: 'Airplane Tours Only',
     note: 'Scenic airplane tours of Cape Fear Region',
-    image: southportTourMap,
+    image: wilmingtonTourMap,
     tours: tours.filter(t => t.location === 'wilmington')
   }
 ];
