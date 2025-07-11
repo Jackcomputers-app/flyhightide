@@ -41,6 +41,10 @@ export const LocationCard = ({
         return { backgroundColor: '#a78bfa', color: '#fff', borderColor: '#8b5cf6' };
       case 'red':
         return { backgroundColor: '#f87171', color: '#fff', borderColor: '#ef4444' };
+      case 'green':
+        return { backgroundColor: '#4ade80', color: '#fff', borderColor: '#22c55e' };
+      case 'gray':
+        return { backgroundColor: '#9ca3af', color: '#fff', borderColor: '#6b7280' };
       default:
         return { backgroundColor: '#9ca3af', color: '#fff', borderColor: '#6b7280' };
     }

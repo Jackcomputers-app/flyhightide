@@ -31,7 +31,8 @@ export const tours: Tour[] = [
     description: 'Scenic coastal flight along beautiful beaches with stunning ocean views',
     location: 'southport',
     features: ['Coastal beaches', 'Ocean views', 'Perfect for first-timers'],
-    image: 'https://flyhightide.com/_astro/high-tide-aviation-team-southport.Xj9jwjZu.jpg'
+    image: 'https://flyhightide.com/_astro/high-tide-aviation-team-southport.Xj9jwjZu.jpg',
+    routeColor: 'green'
   },
   {
     id: 'southport-oak-island',
@@ -45,7 +46,8 @@ export const tours: Tour[] = [
     description: 'Explore Oak Island\'s pristine shores and historic sites from above',
     location: 'southport',
     features: ['Oak Island beaches', 'Historic sites', 'Pristine coastline'],
-    image: 'https://flyhightide.com/_astro/HTA-map-southport.DWpsbb3K.jpg'
+    image: 'https://flyhightide.com/_astro/HTA-map-southport.DWpsbb3K.jpg',
+    routeColor: 'gray'
   },
   {
     id: 'southport-lighthouse',
@@ -59,7 +61,8 @@ export const tours: Tour[] = [
     description: 'Historic lighthouse tour with stunning aerial views of Cape Fear',
     location: 'southport',
     features: ['Historic lighthouses', 'Cape Fear views', 'Aerial photography'],
-    image: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=400&fit=crop'
+    image: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=400&fit=crop',
+    routeColor: 'orange'
   },
   {
     id: 'southport-bald-head',
@@ -73,7 +76,8 @@ export const tours: Tour[] = [
     description: 'Premium tour of Bald Head Island\'s natural beauty and wildlife',
     location: 'southport',
     features: ['Bald Head Island', 'Natural beauty', 'Wildlife viewing'],
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop'
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop',
+    routeColor: 'yellow'
   },
   {
     id: 'southport-cape-fear',
@@ -87,7 +91,8 @@ export const tours: Tour[] = [
     description: 'Complete Cape Fear region aerial adventure covering all highlights',
     location: 'southport',
     features: ['Complete Cape Fear region', 'All major highlights', 'Extended flight'],
-    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop'
+    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop',
+    routeColor: 'purple'
   },
   // St Simons Island, GA Tours
   {
@@ -102,7 +107,8 @@ export const tours: Tour[] = [
     description: 'Historic St Simons lighthouse aerial tour with coastal views',
     location: 'st-simons',
     features: ['Historic lighthouse', 'Coastal views', 'St Simons Island'],
-    image: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=400&fit=crop'
+    image: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=400&fit=crop',
+    routeColor: 'blue'
   },
   {
     id: 'st-simons-jekyll',
@@ -116,7 +122,8 @@ export const tours: Tour[] = [
     description: 'Scenic flight over Jekyll Island\'s natural wonders and beaches',
     location: 'st-simons',
     features: ['Jekyll Island', 'Natural wonders', 'Pristine beaches'],
-    image: 'https://flyhightide.com/_astro/high-tide-helicopter-with-pilot-ready-to-takeoff.FFBadvWW.jpg'
+    image: 'https://flyhightide.com/_astro/high-tide-helicopter-with-pilot-ready-to-takeoff.FFBadvWW.jpg',
+    routeColor: 'green'
   },
   {
     id: 'st-simons-golden-isles',
@@ -130,7 +137,8 @@ export const tours: Tour[] = [
     description: 'Complete Golden Isles aerial experience covering all major islands',
     location: 'st-simons',
     features: ['Complete Golden Isles', 'All major islands', 'Comprehensive tour'],
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop'
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop',
+    routeColor: 'orange'
   },
   // Wilmington, NC Tours
   {
