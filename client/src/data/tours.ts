@@ -1,3 +1,5 @@
+import southportTourMap from '@assets/Southport Tour Map July 2025_1752252741987.webp';
+
 export interface Tour {
   id: string;
   name: string;
@@ -207,7 +209,7 @@ export const locations = [
     name: 'Southport, NC',
     description: 'Helicopter + Airplane Tours Available',
     note: 'Helicopter tours only available at this location',
-    image: '@assets/Southport Tour Map July 2025_1752252741987.webp',
+    image: southportTourMap,
     tours: tours.filter(t => t.location === 'southport')
   },
   {
@@ -223,7 +225,7 @@ export const locations = [
     name: 'Wilmington, NC',
     description: 'Airplane Tours Only',
     note: 'Scenic airplane tours of Cape Fear Region',
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop',
+    image: southportTourMap,
     tours: tours.filter(t => t.location === 'wilmington')
   }
 ];
