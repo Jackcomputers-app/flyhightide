@@ -17,7 +17,6 @@ interface LocationCardProps {
   onSelect?: (locationId: string) => void;
   onExplore?: (locationId: string) => void;
   className?: string;
-  externalBookingUrl?: string;
 }
 
 export const LocationCard = ({ 
@@ -25,8 +24,7 @@ export const LocationCard = ({
   selected, 
   onSelect, 
   onExplore, 
-  className,
-  externalBookingUrl 
+  className 
 }: LocationCardProps) => {
   const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
   const hasAirplane = location.tours.some(t => t.type === 'airplane');
@@ -133,27 +131,15 @@ export const LocationCard = ({
           </div>
         )}
 
-        {externalBookingUrl ? (
-          <Button 
-            className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(externalBookingUrl, '_blank');
-            }}
-          >
-            Book Now
-          </Button>
-        ) : (
-          <Button 
-            className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
-            onClick={(e) => {
-              e.stopPropagation();
-              onExplore?.(location.id);
-            }}
-          >
-            Explore Tours
-          </Button>
-        )}
+        <Button 
+          className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
+          onClick={(e) => {
+            e.stopPropagation();
+            onExplore?.(location.id);
+          }}
+        >
+          Explore Tours
+        </Button>
       </CardContent>
     </Card>
   );

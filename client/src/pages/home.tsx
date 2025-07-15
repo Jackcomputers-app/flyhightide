@@ -101,7 +101,7 @@ export default function Home() {
                   View Bookings
                 </a>
                 <Button
-                  onClick={() => window.open('YOUR_BOOKING_URL_HERE', '_blank')}
+                  onClick={() => openBooking()}
                   className="bg-ocean-blue hover:bg-blue-600 text-white font-medium"
                 >
                   Book a Tour
@@ -158,7 +158,7 @@ export default function Home() {
                 View Bookings
               </a>
               <Button
-                onClick={() => window.open('YOUR_BOOKING_URL_HERE', '_blank')}
+                onClick={() => openBooking()}
                 className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium"
               >
                 Book a Tour
@@ -259,7 +259,7 @@ export default function Home() {
               <div key={location.id} id={`location-${location.id}`}>
                 <LocationCard
                   location={location}
-                  externalBookingUrl="YOUR_BOOKING_URL_HERE"
+                  onExplore={(locationId) => openBooking(locationId)}
                 />
               </div>
             ))}
@@ -470,7 +470,7 @@ export default function Home() {
       {isMobile && (
         <div className="fixed bottom-4 right-4 z-40">
           <Button
-            onClick={() => window.open('YOUR_BOOKING_URL_HERE', '_blank')}
+            onClick={() => openBooking()}
             size="lg"
             className="bg-ocean-blue hover:bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg font-medium"
           >
