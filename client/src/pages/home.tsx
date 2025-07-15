@@ -436,6 +436,7 @@ export default function Home() {
                         <div className="space-y-2">
                           <div className="flex items-center text-gray-600">
                             <MapPin className="w-4 h-4 mr-2" />
+                            <span>Cape Fear Regional Jetport (KSUT)</span>
                             <span>Southport, North Carolina</span>
                           </div>
                           <div className="flex items-center text-gray-600">
