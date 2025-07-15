@@ -131,27 +131,15 @@ export const LocationCard = ({
           </div>
         )}
 
-        <div className="flex gap-2">
-          <Button 
-            className="flex-1 bg-ocean-blue hover:bg-blue-600 text-white"
-            onClick={(e) => {
-              e.stopPropagation();
-              onExplore?.(location.id);
-            }}
-          >
-            Explore Tours
-          </Button>
-          <Button 
-            variant="outline"
-            className="px-4 border-ocean-blue text-ocean-blue hover:bg-ocean-blue hover:text-white"
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(`https://flyhightide.com/book?location=${location.id}`, '_blank');
-            }}
-          >
-            Book Now
-          </Button>
-        </div>
+        <Button 
+          className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
+          onClick={(e) => {
+            e.stopPropagation();
+            onExplore?.(location.id);
+          }}
+        >
+          Explore Tours
+        </Button>
       </CardContent>
     </Card>
   );

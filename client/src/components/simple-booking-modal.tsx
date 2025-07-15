@@ -214,29 +214,17 @@ export const SimpleBookingModal = ({ isOpen, onClose, initialLocation }: SimpleB
                         <div className="text-xs text-gray-600">per person</div>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-600 mb-3">{tour.description}</p>
-                    <div className="flex justify-between items-center">
-                      <div className="text-xs text-gray-500">
-                        <div>{tour.duration}</div>
-                        <div>{tour.type} • {tour.minPassengers}-{tour.maxPassengers} passengers</div>
-                      </div>
-                      <Button
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(`https://flyhightide.com/book?tour=${tour.id}&location=${selectedLocation}`, '_blank');
-                        }}
-                        className="bg-ocean-blue hover:bg-blue-600 text-white"
-                      >
-                        Book Now
-                      </Button>
+                    <p className="text-sm text-gray-600 mb-2">{tour.description}</p>
+                    <div className="flex justify-between text-xs text-gray-500">
+                      <span>{tour.duration}</span>
+                      <span>{tour.type} • {tour.minPassengers}-{tour.maxPassengers} passengers</span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Passenger count and external booking */}
+            {/* Passenger count and booking form */}
             {selectedTour && (
               <div className="space-y-4 border-t pt-6">
                 <div>
@@ -269,25 +257,66 @@ export const SimpleBookingModal = ({ isOpen, onClose, initialLocation }: SimpleB
                   </p>
                 </div>
 
+                <div className="grid grid-cols-1 gap-4">
+                  <div>
+                    <Label htmlFor="customerName" className="text-sm font-medium text-gray-900">
+                      Lead Passenger Name *
+                    </Label>
+                    <Input
+                      id="customerName"
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      placeholder="Enter full name"
+                      className="mt-1"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="customerEmail" className="text-sm font-medium text-gray-900">
+                      Email Address *
+                    </Label>
+                    <Input
+                      id="customerEmail"
+                      type="email"
+                      value={customerEmail}
+                      onChange={(e) => setCustomerEmail(e.target.value)}
+                      placeholder="Enter email address"
+                      className="mt-1"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="customerPhone" className="text-sm font-medium text-gray-900">
+                      Phone Number
+                    </Label>
+                    <Input
+                      id="customerPhone"
+                      type="tel"
+                      value={customerPhone}
+                      onChange={(e) => setCustomerPhone(e.target.value)}
+                      placeholder="Enter phone number"
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium">Estimated Total:</span>
+                    <span className="font-medium">Total Price:</span>
                     <span className="text-2xl font-bold text-ocean-blue">${getTotalPrice()}</span>
                   </div>
                   <p className="text-sm text-gray-600">
                     {selectedTour.name} × {passengers} passenger{passengers !== 1 ? 's' : ''} 
                     ({selectedTour.duration})
                   </p>
-                  <p className="text-xs text-gray-500 mt-2">
-                    Final pricing and availability confirmed on High Tide Aviation's booking platform
-                  </p>
                 </div>
 
                 <Button
-                  onClick={() => window.open(`https://flyhightide.com/book?tour=${selectedTour.id}&location=${selectedLocation}&passengers=${passengers}`, '_blank')}
+                  onClick={handleSubmit}
+                  disabled={isSubmitting || !customerName || !customerEmail}
                   className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
                 >
-                  Book on High Tide Aviation
+                  {isSubmitting ? 'Booking...' : 'Book Tour Now'}
                 </Button>
               </div>
             )}
