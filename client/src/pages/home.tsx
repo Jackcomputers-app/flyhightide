@@ -432,7 +432,7 @@ export default function Home() {
                   <CardContent className="pt-0 px-6 pb-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-2">Southport, NC Location</h4>
+                        <h4 className="font-medium text-gray-900 mb-2">Southport, NC Location (KSUT)</h4>
                         <div className="space-y-2">
                           <div className="flex items-center text-gray-600">
                             <MapPin className="w-4 h-4 mr-2" />
@@ -445,7 +445,7 @@ export default function Home() {
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-2">St Simons Island, GA Location</h4>
+                        <h4 className="font-medium text-gray-900 mb-2">St Simons Island, GA Location (KSSI)</h4>
                         <div className="space-y-2">
                           <div className="flex items-center text-gray-600">
                             <MapPin className="w-4 h-4 mr-2" />
