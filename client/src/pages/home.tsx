@@ -453,7 +453,7 @@ export default function Home() {
                           </div>
                           <div className="flex items-center text-gray-600">
                             <Phone className="w-4 h-4 mr-2" />
-                            <span>Call for bookings and information</span>
+                            <span>Call for bookings and information<a href="tel:+1(910) 477 1926" className="text-blue-500 hover:underline"> +1 (910) 477-1926</a></span>
                           </div>
                         </div>
                       </div>
