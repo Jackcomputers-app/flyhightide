@@ -20,7 +20,7 @@ This is a prototype of a redesigned tour booking website for High Tide Aviation,
 - **Language**: TypeScript with ESM modules
 - **Development**: TSX for TypeScript execution
 - **Storage**: In-memory storage implementation (MemStorage class)
-- **Database**: Configured for PostgreSQL with Drizzle ORM (production-ready)
+- **Database**: Configured for MySQL
 
 ## Key Components
 
