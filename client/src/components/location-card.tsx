@@ -97,7 +97,7 @@ export const LocationCard = ({
               )}
               {hasHelicopter && (
                 <p className="text-sm text-gray-700">
-                  Helicopter tours start at <span className="font-semibold text-ocean-blue">${minhelicopter or airplanePrice}</span>
+                  Helicopter tours start at <span className="font-semibold text-ocean-blue">${minHelicopterPrice}</span>
                 </p>
               )}
             </div>
