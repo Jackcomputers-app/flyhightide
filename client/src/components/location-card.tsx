@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Plane, Zap } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LocationCardProps {
@@ -26,12 +26,12 @@ export const LocationCard = ({
   onExplore, 
   className 
 }: LocationCardProps) => {
-  const hasHelicopter = location.tours.some(t => t.type === 'helicopter' || t.type === 'helicopter or airplane');
-  const hasAirplane = location.tours.some(t => t.type === 'airplane' || t.type === 'helicopter or airplane');
+  const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
+  const hasAirplane = location.tours.some(t => t.type === 'airplane');
   
   // Calculate pricing information
-  const helicopterTours = location.tours.filter(t => t.type === 'helicopter' || t.type === 'helicopter or airplane');
-  const airplaneTours = location.tours.filter(t => t.type === 'airplane' || t.type === 'helicopter or airplane');
+  const helicopterTours = location.tours.filter(t => t.type === 'helicopter');
+  const airplaneTours = location.tours.filter(t => t.type === 'airplane');
   const allTours = location.tours;
   
   const minHelicopterPrice = helicopterTours.length > 0 ? Math.min(...helicopterTours.map(t => t.price)) : 0;
@@ -91,26 +91,20 @@ export const LocationCard = ({
           {location.id === 'southport' ? (
             <div className="space-y-1">
               {hasAirplane && (
-                <div className="flex items-center text-sm text-gray-700">
-                  <Plane className="w-4 h-4 text-coastal-teal mr-2" />
-                  <span>Airplane tours start at <span className="font-semibold text-ocean-blue">${minAirplanePrice}</span></span>
-                </div>
+                <p className="text-sm text-gray-700">
+                  Airplane tours start at <span className="font-semibold text-ocean-blue">${minAirplanePrice}</span>
+                </p>
               )}
               {hasHelicopter && (
-                <div className="flex items-center text-sm text-gray-700">
-                  <Zap className="w-4 h-4 text-coastal-teal mr-2" />
-                  <span>Helicopter tours start at <span className="font-semibold text-ocean-blue">${minHelicopterPrice}</span></span>
-                </div>
+                <p className="text-sm text-gray-700">
+                  Helicopter tours start at <span className="font-semibold text-ocean-blue">${minHelicopterPrice}</span>
+                </p>
               )}
             </div>
           ) : (
-            <div className="flex items-center text-sm text-gray-700">
-              <div className="flex items-center space-x-1 mr-2">
-                {hasAirplane && <Plane className="w-4 h-4 text-coastal-teal" />}
-                {hasHelicopter && <Zap className="w-4 h-4 text-coastal-teal" />}
-              </div>
-              <span>Tours start at <span className="font-semibold text-ocean-blue">${minOverallPrice}</span></span>
-            </div>
+            <p className="text-sm text-gray-700">
+              Tours start at <span className="font-semibold text-ocean-blue">${minOverallPrice}</span>
+            </p>
           )}
         </div>
 
@@ -123,17 +117,7 @@ export const LocationCard = ({
                 className="text-xs font-medium border-2"
                 style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
               >
-                <div className="flex items-center gap-1">
-                  {tour.type === 'airplane' && <Plane className="w-3 h-3" />}
-                  {tour.type === 'helicopter' && <Zap className="w-3 h-3" />}
-                  {tour.type === 'helicopter or airplane' && (
-                    <div className="flex items-center gap-0.5">
-                      <Zap className="w-3 h-3" />
-                      <Plane className="w-3 h-3" />
-                    </div>
-                  )}
-                  <span>{tour.name}</span>
-                </div>
+                {tour.name}
               </Badge>
             ))}
           </div>

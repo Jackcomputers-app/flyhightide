@@ -42,7 +42,7 @@ export const tours: Tour[] = [
     minPassengers: 2,
     maxPassengers: 3,
     maxWeight: 500,
-    type: 'helicopter or airplane',
+    type: 'helicopter',
     description: 'Explore Oak Island\'s pristine shores and historic sites from above',
     location: 'southport',
     features: ['Oak Island beaches', 'Historic sites', 'Pristine coastline'],
