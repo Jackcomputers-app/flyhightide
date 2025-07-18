@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Plane, Helicopter } from 'lucide-react';
+import { MapPin, Plane, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LocationCardProps {
@@ -98,7 +98,7 @@ export const LocationCard = ({
               )}
               {hasHelicopter && (
                 <div className="flex items-center text-sm text-gray-700">
-                  <Helicopter className="w-4 h-4 text-coastal-teal mr-2" />
+                  <Zap className="w-4 h-4 text-coastal-teal mr-2" />
                   <span>Helicopter tours start at <span className="font-semibold text-ocean-blue">${minHelicopterPrice}</span></span>
                 </div>
               )}
@@ -107,7 +107,7 @@ export const LocationCard = ({
             <div className="flex items-center text-sm text-gray-700">
               <div className="flex items-center space-x-1 mr-2">
                 {hasAirplane && <Plane className="w-4 h-4 text-coastal-teal" />}
-                {hasHelicopter && <Helicopter className="w-4 h-4 text-coastal-teal" />}
+                {hasHelicopter && <Zap className="w-4 h-4 text-coastal-teal" />}
               </div>
               <span>Tours start at <span className="font-semibold text-ocean-blue">${minOverallPrice}</span></span>
             </div>
@@ -123,7 +123,11 @@ export const LocationCard = ({
                 className="text-xs font-medium border-2"
                 style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
               >
-                {tour.name}
+                <div className="flex items-center gap-1">
+                  {tour.type === 'airplane' && <Plane className="w-3 h-3" />}
+                  {tour.type === 'helicopter' && <Zap className="w-3 h-3" />}
+                  <span>{tour.name}</span>
+                </div>
               </Badge>
             ))}
           </div>
