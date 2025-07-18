@@ -9,7 +9,7 @@ export interface Tour {
   minPassengers: number;
   maxPassengers: number;
   maxWeight: number;
-  type: 'helicopter' | 'airplane' | 'helicopter or airplane';
+  type: 'helicopter' | 'airplane';
   description: string;
   location: 'southport' | 'st-simons' | 'wilmington';
   features: string[];
@@ -27,7 +27,7 @@ export const tours: Tour[] = [
     minPassengers: 2,
     maxPassengers: 3,
     maxWeight: 500,
-    type: 'helicopter or airplane',
+    type: 'helicopter',
     description: 'Scenic coastal flight along beautiful beaches with stunning ocean views',
     location: 'southport',
     features: ['Coastal beaches', 'Ocean views', 'Perfect for first-timers'],
@@ -57,7 +57,7 @@ export const tours: Tour[] = [
     minPassengers: 1,
     maxPassengers: 3,
     maxWeight: 650,
-    type: 'helicopter or airplane',
+    type: 'airplane',
     description: 'Historic lighthouse tour with stunning aerial views of Cape Fear',
     location: 'southport',
     features: ['Historic lighthouses', 'Cape Fear views', 'Aerial photography'],
@@ -72,7 +72,7 @@ export const tours: Tour[] = [
     minPassengers: 2,
     maxPassengers: 3,
     maxWeight: 500,
-    type: 'helicopter or airplane',
+    type: 'helicopter',
     description: 'Premium tour of Bald Head Island\'s natural beauty and wildlife',
     location: 'southport',
     features: ['Bald Head Island', 'Natural beauty', 'Wildlife viewing'],
@@ -87,7 +87,7 @@ export const tours: Tour[] = [
     minPassengers: 1,
     maxPassengers: 3,
     maxWeight: 650,
-    type: 'helicopter or airplane',
+    type: 'airplane',
     description: 'Complete Cape Fear region aerial adventure covering all highlights',
     location: 'southport',
     features: ['Complete Cape Fear region', 'All major highlights', 'Extended flight'],

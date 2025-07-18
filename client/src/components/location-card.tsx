@@ -103,7 +103,7 @@ export const LocationCard = ({
             </div>
           ) : (
             <p className="text-sm text-gray-700">
-              Tours start at <span className="font-semibold text-ocean-blue">$89</span>
+              Tours start at <span className="font-semibold text-ocean-blue">${minOverallPrice}</span>
             </p>
           )}
         </div>
