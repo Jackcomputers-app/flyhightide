@@ -9,7 +9,7 @@ export interface Tour {
   minPassengers: number;
   maxPassengers: number;
   maxWeight: number;
-  type: 'helicopter' | 'airplane';
+  type: 'helicopter' | 'airplane' | 'helicopter or airplane';
   description: string;
   location: 'southport' | 'st-simons' | 'wilmington';
   features: string[];
