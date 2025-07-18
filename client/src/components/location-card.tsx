@@ -26,12 +26,12 @@ export const LocationCard = ({
   onExplore, 
   className 
 }: LocationCardProps) => {
-  const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
-  const hasAirplane = location.tours.some(t => t.type === 'airplane');
+  const hasHelicopter = location.tours.some(t => t.type === 'helicopter' || t.type === 'helicopter or airplane');
+  const hasAirplane = location.tours.some(t => t.type === 'airplane' || t.type === 'helicopter or airplane');
   
   // Calculate pricing information
-  const helicopterTours = location.tours.filter(t => t.type === 'helicopter');
-  const airplaneTours = location.tours.filter(t => t.type === 'airplane');
+  const helicopterTours = location.tours.filter(t => t.type === 'helicopter' || t.type === 'helicopter or airplane');
+  const airplaneTours = location.tours.filter(t => t.type === 'airplane' || t.type === 'helicopter or airplane');
   const allTours = location.tours;
   
   const minHelicopterPrice = helicopterTours.length > 0 ? Math.min(...helicopterTours.map(t => t.price)) : 0;
@@ -126,6 +126,12 @@ export const LocationCard = ({
                 <div className="flex items-center gap-1">
                   {tour.type === 'airplane' && <Plane className="w-3 h-3" />}
                   {tour.type === 'helicopter' && <Zap className="w-3 h-3" />}
+                  {tour.type === 'helicopter or airplane' && (
+                    <div className="flex items-center gap-0.5">
+                      <Zap className="w-3 h-3" />
+                      <Plane className="w-3 h-3" />
+                    </div>
+                  )}
                   <span>{tour.name}</span>
                 </div>
               </Badge>
