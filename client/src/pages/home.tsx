@@ -508,9 +508,12 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Connect</h4>
               <div className="flex space-x-4">
-                <Facebook className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
-                <Instagram className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
-                <Mail className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
+                <a href="https://www.facebook.com/flyhightide" target="_blank" rel="noopener noreferrer">
+                  <Facebook className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
+                </a>
+                <a href="https://www.instagram.com/hightideaviation/" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
+                </a>
               </div>
             </div>
           </div>
