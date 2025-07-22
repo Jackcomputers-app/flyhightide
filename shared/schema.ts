@@ -26,6 +26,17 @@ export const bookings = pgTable("bookings", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const contacts = pgTable("contacts", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  subject: text("subject").notNull(),
+  message: text("message").notNull(),
+  status: text("status").notNull().default("new"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const bookingRelations = relations(bookings, ({ one }) => ({
   user: one(users, {
     fields: [bookings.contactEmail],
@@ -43,7 +54,15 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   createdAt: true,
 });
 
+export const insertContactSchema = createInsertSchema(contacts).omit({
+  id: true,
+  createdAt: true,
+  status: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
 export type Booking = typeof bookings.$inferSelect;
+export type InsertContact = z.infer<typeof insertContactSchema>;
+export type Contact = typeof contacts.$inferSelect;
