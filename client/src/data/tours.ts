@@ -48,7 +48,6 @@ export const tours: Tour[] = [
   features: ['Coastal beaches', 'Ocean views', 'Perfect for first-timers'],
   image: 'https://flyhightide.com/_astro/high-tide-aviation-team-southport.Xj9jwjZu.jpg',
   routeColor: 'green',
-  bookingUrl: 'https://yourbookingwebsite.com/beach-lover'
 },
   {
     id: 'southport-lighthouse',
