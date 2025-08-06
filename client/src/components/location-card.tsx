@@ -108,20 +108,30 @@ export const LocationCard = ({
           )}
         </div>
 
-        <div className="mb-4">
-          <div className="flex flex-wrap gap-2">
-            {location.tours.map((tour, index) => (
-              <Badge 
-                key={index} 
-                variant="outline" 
-                className="text-xs font-medium border-2"
-                style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
-              >
-                {tour.name}
-              </Badge>
-            ))}
-          </div>
-        </div>
+<div className="mb-4">
+  <div className="flex flex-wrap gap-2">
+    {location.tours.map((tour, index) => (
+      <div key={index} className="flex flex-col items-start mb-2">
+        <Badge 
+          variant="outline" 
+          className="text-xs font-medium border-2 mb-1"
+          style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
+        >
+          {tour.name}
+        </Badge>
+        <Button
+          className="bg-ocean-blue hover:bg-blue-600 text-white text-xs px-3 py-1"
+          onClick={(e) => {
+            e.stopPropagation();
+            window.open(tour.bookingUrl, '_blank');
+          }}
+        >
+          Book Now
+        </Button>
+      </div>
+    ))}
+  </div>
+</div> 
 
         {location.id === 'southport' && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
