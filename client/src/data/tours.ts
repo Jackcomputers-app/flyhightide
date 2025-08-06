@@ -35,22 +35,6 @@ export const tours: Tour[] = [
     routeColor: 'green'
   },
   {
-  id: 'southport-beach-lover',
-  name: 'Beach Lover',
-  duration: '20 minutes',
-  price: 89,
-  minPassengers: 2,
-  maxPassengers: 3,
-  maxWeight: 500,
-  type: 'helicopter',
-  description: 'Scenic coastal flight along beautiful beaches with stunning ocean views',
-  location: 'southport',
-  features: ['Coastal beaches', 'Ocean views', 'Perfect for first-timers'],
-  image: 'https://flyhightide.com/_astro/high-tide-aviation-team-southport.Xj9jwjZu.jpg',
-  routeColor: 'green',
-  bookingUrl: 'https://yourbookingwebsite.com/beach-lover'
-},
-  {
     id: 'southport-lighthouse',
     name: 'Lighthouse Tour',
     duration: '35 minutes',
