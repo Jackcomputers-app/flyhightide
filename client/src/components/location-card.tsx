@@ -141,15 +141,11 @@ export const LocationCard = ({
           </div>
         )}
 
-        <Button 
-          className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
-          onClick={(e) => {
-            e.stopPropagation();
-            onExplore?.(location.id);
-          }}
-        >
-          Explore Tours
-        </Button>
+        <div className="text-center">
+          <p className="text-sm text-gray-600">
+            Select any tour above to book directly
+          </p>
+        </div>
       </CardContent>
     </Card>
   );

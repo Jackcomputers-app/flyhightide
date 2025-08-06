@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { LocationCard } from '@/components/location-card';
 import { TestimonialCard } from '@/components/testimonial-card';
-import { SimpleBookingModal } from '@/components/simple-booking-modal';
+
 import { Logo } from '@/components/logo';
 import { locations } from '@/data/tours';
 import { testimonials, getRandomTestimonials } from '@/data/testimonials';
@@ -26,17 +26,15 @@ import {
 import { Link } from 'wouter';
 
 export default function Home() {
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState<string | undefined>();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLocationMenuOpen, setIsLocationMenuOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const randomTestimonials = getRandomTestimonials(3);
 
-  const openBooking = (location?: string) => {
-    setSelectedLocation(location);
-    setIsBookingOpen(true);
+  const scrollToLocations = () => {
+    scrollToSection('locations');
     setIsMobileMenuOpen(false);
   };
 
@@ -101,12 +99,12 @@ export default function Home() {
                 <Link href="/contact" className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors">
                   Contact
                 </Link>
-                <Button
-                  onClick={() => openBooking()}
-                  className="bg-ocean-blue hover:bg-blue-600 text-white font-medium"
+                <button
+                  onClick={() => scrollToSection('locations')}
+                  className="bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
                 >
-                  Book a Tour
-                </Button>
+                  View Tours
+                </button>
               </div>
             </div>
             
@@ -164,12 +162,12 @@ export default function Home() {
               >
                 Contact
               </Link>
-              <Button
-                onClick={() => openBooking()}
-                className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium"
+              <button
+                onClick={scrollToLocations}
+                className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
               >
-                Book a Tour
-              </Button>
+                View Tours
+              </button>
             </div>
           </div>
         )}
@@ -266,7 +264,6 @@ export default function Home() {
               <div key={location.id} id={`location-${location.id}`}>
                 <LocationCard
                   location={location}
-                  onExplore={(locationId) => openBooking(locationId)}
                 />
               </div>
             ))}
@@ -530,12 +527,8 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Booking Modal */}
-      <SimpleBookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        initialLocation={selectedLocation}
-      />
+
+
     </div>
   );
 }
