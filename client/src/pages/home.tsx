@@ -4,10 +4,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { LocationCard } from '@/components/location-card';
 import { TestimonialCard } from '@/components/testimonial-card';
-import { TourInfoModal } from '@/components/tour-info-modal';
-
+import { SimpleBookingModal } from '@/components/simple-booking-modal';
 import { Logo } from '@/components/logo';
-import { locations, Tour } from '@/data/tours';
+import { locations } from '@/data/tours';
 import { testimonials, getRandomTestimonials } from '@/data/testimonials';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { 
@@ -27,23 +26,18 @@ import {
 import { Link } from 'wouter';
 
 export default function Home() {
-
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState<string | undefined>();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLocationMenuOpen, setIsLocationMenuOpen] = useState(false);
-  const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
-  const [isTourInfoOpen, setIsTourInfoOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const randomTestimonials = getRandomTestimonials(3);
 
-  const scrollToLocations = () => {
-    scrollToSection('locations');
+  const openBooking = (location?: string) => {
+    setSelectedLocation(location);
+    setIsBookingOpen(true);
     setIsMobileMenuOpen(false);
-  };
-
-  const handleTourInfo = (tour: Tour) => {
-    setSelectedTour(tour);
-    setIsTourInfoOpen(true);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -107,12 +101,12 @@ export default function Home() {
                 <Link href="/contact" className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors">
                   Contact
                 </Link>
-                <button
-                  onClick={() => scrollToSection('locations')}
-                  className="bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
+                <Button
+                  onClick={() => openBooking()}
+                  className="bg-ocean-blue hover:bg-blue-600 text-white font-medium"
                 >
-                  View Tours
-                </button>
+                  Book a Tour
+                </Button>
               </div>
             </div>
             
@@ -170,12 +164,12 @@ export default function Home() {
               >
                 Contact
               </Link>
-              <button
-                onClick={scrollToLocations}
-                className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
+              <Button
+                onClick={() => openBooking()}
+                className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium"
               >
-                View Tours
-              </button>
+                Book a Tour
+              </Button>
             </div>
           </div>
         )}
@@ -272,7 +266,7 @@ export default function Home() {
               <div key={location.id} id={`location-${location.id}`}>
                 <LocationCard
                   location={location}
-                  onTourInfo={handleTourInfo}
+                  onExplore={(locationId) => openBooking(locationId)}
                 />
               </div>
             ))}
@@ -483,12 +477,12 @@ export default function Home() {
       {isMobile && (
         <div className="fixed bottom-4 right-4 z-40">
           <Button
-            onClick={scrollToLocations}
+            onClick={() => openBooking()}
             size="lg"
             className="bg-ocean-blue hover:bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg font-medium"
           >
             <Plane className="w-5 h-5 mr-2" />
-            View Tours
+            Book Now
           </Button>
         </div>
       )}
@@ -536,14 +530,12 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Tour Info Modal */}
-      <TourInfoModal
-        tour={selectedTour}
-        isOpen={isTourInfoOpen}
-        onClose={() => setIsTourInfoOpen(false)}
-        locationName={selectedTour ? locations.find(loc => loc.tours.some(t => t.id === selectedTour.id))?.name || '' : ''}
+      {/* Booking Modal */}
+      <SimpleBookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        initialLocation={selectedLocation}
       />
-
     </div>
   );
 }

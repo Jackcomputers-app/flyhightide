@@ -30,7 +30,10 @@ export const ContactForm = () => {
 
   const contactMutation = useMutation({
     mutationFn: async (data: InsertContact) => {
-      return apiRequest('POST', '/api/contacts', data);
+      return apiRequest('/api/contacts', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
     },
     onSuccess: () => {
       toast({
@@ -108,7 +111,7 @@ export const ContactForm = () => {
                     <FormControl>
                       <div className="relative">
                         <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                        <Input placeholder="(555) 123-4567" className="pl-10" {...field} value={field.value || ''} />
+                        <Input placeholder="(555) 123-4567" className="pl-10" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
