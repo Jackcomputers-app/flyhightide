@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertBookingSchema, insertContactSchema } from "@shared/schema";
+import { insertBookingSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Booking routes
@@ -34,28 +34,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching bookings by email:", error);
       res.status(500).json({ error: "Failed to fetch bookings" });
-    }
-  });
-
-  // Contact routes
-  app.post("/api/contacts", async (req, res) => {
-    try {
-      const validatedData = insertContactSchema.parse(req.body);
-      const contact = await storage.createContact(validatedData);
-      res.json(contact);
-    } catch (error) {
-      console.error("Error creating contact:", error);
-      res.status(400).json({ error: "Failed to send contact message" });
-    }
-  });
-
-  app.get("/api/contacts", async (req, res) => {
-    try {
-      const contacts = await storage.getContacts();
-      res.json(contacts);
-    } catch (error) {
-      console.error("Error fetching contacts:", error);
-      res.status(500).json({ error: "Failed to fetch contacts" });
     }
   });
 

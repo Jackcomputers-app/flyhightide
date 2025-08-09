@@ -104,7 +104,6 @@ Changelog:
 - July 11, 2025. Added third location (Wilmington, NC) with 5 new tours from PDF content
 - July 11, 2025. Updated UI to support three-location grid layout and booking flow
 - July 11, 2025 4:28 PM EST. **MILESTONE CHECKPOINT**: Completed simplified booking experience with colored tour badges
-- July 22, 2025 6:47 PM EST. Added MySQL database support and contact form functionality for Ubuntu server deployment
 
 ## Milestone Checkpoint (July 11, 2025 4:28 PM EST)
 

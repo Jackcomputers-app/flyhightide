@@ -15,27 +15,40 @@ export interface Tour {
   features: string[];
   image: string;
   routeColor?: string;
-  bookingUrl: string;
 }
 
 export const tours: Tour[] = [
   // Southport, NC Tours
   {
-  id: 'southport-beach-lover',
-  name: 'Beach Lover',
-  duration: '20 minutes',
-  price: 89,
-  minPassengers: 2,
-  maxPassengers: 3,
-  maxWeight: 500,
-  type: 'helicopter',
-  description: 'Scenic coastal flight along beautiful beaches with stunning ocean views',
-  location: 'southport',
-  features: ['Coastal beaches', 'Ocean views', 'Perfect for first-timers'],
-  image: 'https://flyhightide.com/_astro/high-tide-aviation-team-southport.Xj9jwjZu.jpg',
-  routeColor: 'green',
-  bookingUrl: 'https://yourbookingwebsite.com/beach-lover'
-},
+    id: 'southport-beach-lover',
+    name: 'Beach Lover',
+    duration: '20 minutes',
+    price: 89,
+    minPassengers: 2,
+    maxPassengers: 3,
+    maxWeight: 500,
+    type: 'helicopter',
+    description: 'Scenic coastal flight along beautiful beaches with stunning ocean views',
+    location: 'southport',
+    features: ['Coastal beaches', 'Ocean views', 'Perfect for first-timers'],
+    image: 'https://flyhightide.com/_astro/high-tide-aviation-team-southport.Xj9jwjZu.jpg',
+    routeColor: 'green'
+  },
+  {
+    id: 'southport-oak-island',
+    name: 'Oak Island',
+    duration: '30 minutes',
+    price: 125,
+    minPassengers: 2,
+    maxPassengers: 3,
+    maxWeight: 500,
+    type: 'helicopter or airplane',
+    description: 'Explore Oak Island\'s pristine shores and historic sites from above',
+    location: 'southport',
+    features: ['Oak Island beaches', 'Historic sites', 'Pristine coastline'],
+    image: 'https://flyhightide.com/_astro/HTA-map-southport.DWpsbb3K.jpg',
+    routeColor: 'gray'
+  },
   {
     id: 'southport-lighthouse',
     name: 'Lighthouse Tour',
@@ -49,8 +62,7 @@ export const tours: Tour[] = [
     location: 'southport',
     features: ['Historic lighthouses', 'Cape Fear views', 'Aerial photography'],
     image: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=400&fit=crop',
-    routeColor: 'orange',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/southport-lighthouse'
+    routeColor: 'orange'
   },
   {
     id: 'southport-bald-head',
@@ -65,8 +77,7 @@ export const tours: Tour[] = [
     location: 'southport',
     features: ['Bald Head Island', 'Natural beauty', 'Wildlife viewing'],
     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop',
-    routeColor: 'yellow',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/southport-bald-head'
+    routeColor: 'yellow'
   },
   {
     id: 'southport-cape-fear',
@@ -81,8 +92,7 @@ export const tours: Tour[] = [
     location: 'southport',
     features: ['Complete Cape Fear region', 'All major highlights', 'Extended flight'],
     image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop',
-    routeColor: 'purple',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/southport-cape-fear'
+    routeColor: 'purple'
   },
   // St Simons Island, GA Tours
   {
@@ -98,8 +108,7 @@ export const tours: Tour[] = [
     location: 'st-simons',
     features: ['Historic lighthouse', 'Coastal views', 'St Simons Island'],
     image: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=400&fit=crop',
-    routeColor: 'blue',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/st-simons-lighthouse'
+    routeColor: 'blue'
   },
   {
     id: 'st-simons-jekyll',
@@ -114,8 +123,7 @@ export const tours: Tour[] = [
     location: 'st-simons',
     features: ['Jekyll Island', 'Natural wonders', 'Pristine beaches'],
     image: 'https://flyhightide.com/_astro/high-tide-helicopter-with-pilot-ready-to-takeoff.FFBadvWW.jpg',
-    routeColor: 'green',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/st-simons-jekyll'
+    routeColor: 'green'
   },
   {
     id: 'st-simons-golden-isles',
@@ -130,8 +138,7 @@ export const tours: Tour[] = [
     location: 'st-simons',
     features: ['Complete Golden Isles', 'All major islands', 'Comprehensive tour'],
     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop',
-    routeColor: 'orange',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/st-simons-golden-isles'
+    routeColor: 'orange'
   },
   // Wilmington, NC Tours
   {
@@ -147,8 +154,7 @@ export const tours: Tour[] = [
     location: 'wilmington',
     features: ['USS North Carolina', 'Wrightsville Beach', 'Crystal Pier', 'Johnnie Mercers Pier', 'Dolphin & sea turtle spotting'],
     image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop',
-    routeColor: 'yellow',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/wilmington-battleship-beach'
+    routeColor: 'yellow'
   },
   {
     id: 'wilmington-masonboro-excursion',
@@ -163,8 +169,7 @@ export const tours: Tour[] = [
     location: 'wilmington',
     features: ['Cape Fear River', 'State Port', 'Orton Plantation', 'Masonboro Island', 'Intracoastal Waterway'],
     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop',
-    routeColor: 'orange',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/4000022551'
+    routeColor: 'orange'
   },
   {
     id: 'wilmington-topsail-trek',
@@ -179,8 +184,7 @@ export const tours: Tour[] = [
     location: 'wilmington',
     features: ['Figure Eight Island', 'Lea-Hutaff Island', 'Surf City', 'Crystal clear waters', 'Marsh views'],
     image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop',
-    routeColor: 'blue',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/wilmington-topsail-trek'
+    routeColor: 'blue'
   },
   {
     id: 'wilmington-cape-fear-expedition',
@@ -195,8 +199,7 @@ export const tours: Tour[] = [
     location: 'wilmington',
     features: ['Bald Head Island', 'Brunswick Town', 'Southport', 'Fort Fisher', 'Carolina Beach', 'Gen. Beauregard shipwreck', '2 lighthouses'],
     image: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=400&fit=crop',
-    routeColor: 'purple',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/wilmington-cape-fear-expedition'
+    routeColor: 'purple'
   },
   {
     id: 'wilmington-beach-lover',
@@ -211,8 +214,7 @@ export const tours: Tour[] = [
     location: 'wilmington',
     features: ['Most comprehensive tour', 'Cape Fear Region', 'CSS Bendigo shipwreck', '3 lighthouses', 'Fort Caswell', 'Historical journey'],
     image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop',
-    routeColor: 'red',
-    bookingUrl: 'https://www.flightcircle.com/shop/5c9443ea346a/wilmington-beach-lover'
+    routeColor: 'red'
   }
 ];
 

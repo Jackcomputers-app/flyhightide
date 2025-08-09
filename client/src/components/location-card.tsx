@@ -1,10 +1,8 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin } from 'lucide-react';
+import { MapPin, Plane, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Tour } from '@/data/tours';
-import React, { useState } from 'react';
 
 interface LocationCardProps {
   location: {
@@ -13,31 +11,29 @@ interface LocationCardProps {
     description: string;
     note: string;
     image: string;
-    tours: Tour[];
+    tours: any[];
   };
   selected?: boolean;
   onSelect?: (locationId: string) => void;
   onExplore?: (locationId: string) => void;
-  onTourInfo?: (tour: Tour) => void;
   className?: string;
 }
 
-export const LocationCard = ({
-  location,
-  selected,
-  onSelect,
-  onExplore,
-  onTourInfo,
-  className
+export const LocationCard = ({ 
+  location, 
+  selected, 
+  onSelect, 
+  onExplore, 
+  className 
 }: LocationCardProps) => {
-  const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
-  const hasAirplane = location.tours.some(t => t.type === 'airplane');
-
+  const hasHelicopter = location.tours.some(t => t.type === 'helicopter' || t.type === 'helicopter or airplane');
+  const hasAirplane = location.tours.some(t => t.type === 'airplane' || t.type === 'helicopter or airplane');
+  
   // Calculate pricing information
-  const helicopterTours = location.tours.filter(t => t.type === 'helicopter');
-  const airplaneTours = location.tours.filter(t => t.type === 'airplane');
+  const helicopterTours = location.tours.filter(t => t.type === 'helicopter' || t.type === 'helicopter or airplane');
+  const airplaneTours = location.tours.filter(t => t.type === 'airplane' || t.type === 'helicopter or airplane');
   const allTours = location.tours;
-
+  
   const minHelicopterPrice = helicopterTours.length > 0 ? Math.min(...helicopterTours.map(t => t.price)) : 0;
   const minAirplanePrice = airplaneTours.length > 0 ? Math.min(...airplaneTours.map(t => t.price)) : 0;
   const minOverallPrice = allTours.length > 0 ? Math.min(...allTours.map(t => t.price)) : 0;
@@ -63,9 +59,6 @@ export const LocationCard = ({
     }
   };
 
-  // Modal state for map image
-  const [showMapModal, setShowMapModal] = useState(false);
-
   return (
     <Card
       className={cn(
@@ -75,45 +68,13 @@ export const LocationCard = ({
       )}
       onClick={() => onSelect?.(location.id)}
     >
-      {/* Map image with modal */}
-      <div
-        className="aspect-[4/3] sm:aspect-video w-full overflow-hidden rounded-t-lg cursor-zoom-in bg-gray-50"
-        onClick={e => {
-          e.stopPropagation();
-          setShowMapModal(true);
-        }}
-      >
+      <div className="aspect-video w-full overflow-hidden rounded-t-lg">
         <img
           src={location.image}
           alt={location.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover"
         />
       </div>
-      {/* Modal for larger map */}
-      {showMapModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
-          onClick={() => setShowMapModal(false)}
-        >
-          <div
-            className="bg-white rounded-lg p-4 max-w-3xl w-full flex flex-col items-center"
-            onClick={e => e.stopPropagation()}
-          >
-            <img
-              src={location.image}
-              alt={location.name}
-              className="w-full h-auto max-h-[80vh] object-contain rounded"
-            />
-            <Button
-              className="mt-4 px-4 py-2 bg-ocean-blue text-white rounded hover:bg-blue-600"
-              onClick={() => setShowMapModal(false)}
-            >
-              Close
-            </Button>
-          </div>
-        </div>
-      )}
-
       <CardContent className="p-6">
         <div className="mb-3">
           <h3 className="text-xl font-semibold text-gray-900">{location.name}</h3>
@@ -130,44 +91,50 @@ export const LocationCard = ({
           {location.id === 'southport' ? (
             <div className="space-y-1">
               {hasAirplane && (
-                <p className="text-sm text-gray-700">
-                  Airplane tours start at <span className="font-semibold text-ocean-blue">${minAirplanePrice}</span>
-                </p>
+                <div className="flex items-center text-sm text-gray-700">
+                  <Plane className="w-4 h-4 text-coastal-teal mr-2" />
+                  <span>Airplane tours start at <span className="font-semibold text-ocean-blue">${minAirplanePrice}</span></span>
+                </div>
               )}
               {hasHelicopter && (
-                <p className="text-sm text-gray-700">
-                  Helicopter tours start at <span className="font-semibold text-ocean-blue">${minHelicopterPrice}</span>
-                </p>
+                <div className="flex items-center text-sm text-gray-700">
+                  <Zap className="w-4 h-4 text-coastal-teal mr-2" />
+                  <span>Helicopter tours start at <span className="font-semibold text-ocean-blue">${minHelicopterPrice}</span></span>
+                </div>
               )}
             </div>
           ) : (
-            <p className="text-sm text-gray-700">
-              Tours start at <span className="font-semibold text-ocean-blue">${minOverallPrice}</span>
-            </p>
+            <div className="flex items-center text-sm text-gray-700">
+              <div className="flex items-center space-x-1 mr-2">
+                {hasAirplane && <Plane className="w-4 h-4 text-coastal-teal" />}
+                {hasHelicopter && <Zap className="w-4 h-4 text-coastal-teal" />}
+              </div>
+              <span>Tours start at <span className="font-semibold text-ocean-blue">${minOverallPrice}</span></span>
+            </div>
           )}
         </div>
 
         <div className="mb-4">
           <div className="flex flex-wrap gap-2">
             {location.tours.map((tour, index) => (
-              <div key={index} className="flex flex-col items-start mb-2">
-                <Badge
-                  variant="outline"
-                  className="text-xs font-medium border-2 mb-1"
-                  style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
-                >
-                  {tour.name}
-                </Badge>
-                <Button
-                  className="bg-ocean-blue hover:bg-blue-600 text-white text-xs px-3 py-1"
-                  onClick={e => {
-                    e.stopPropagation();
-                    onTourInfo?.(tour);
-                  }}
-                >
-                  Book Now
-                </Button>
-              </div>
+              <Badge 
+                key={index} 
+                variant="outline" 
+                className="text-xs font-medium border-2"
+                style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
+              >
+                <div className="flex items-center gap-1">
+                  {tour.type === 'airplane' && <Plane className="w-3 h-3" />}
+                  {tour.type === 'helicopter' && <Zap className="w-3 h-3" />}
+                  {tour.type === 'helicopter or airplane' && (
+                    <div className="flex items-center gap-0.5">
+                      <Zap className="w-3 h-3" />
+                      <Plane className="w-3 h-3" />
+                    </div>
+                  )}
+                  <span>{tour.name}</span>
+                </div>
+              </Badge>
             ))}
           </div>
         </div>
@@ -175,30 +142,20 @@ export const LocationCard = ({
         {location.id === 'southport' && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
             <p className="text-xs text-blue-800">
-              <span className="font-medium"></span> Helicopter and Airplane Tours
+              <span className="font-medium">Special:</span> Only location with helicopter tours
             </p>
           </div>
         )}
 
-        {location.id === 'st-simons' && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-            <p className="text-xs text-blue-800">
-              <span className="font-medium"></span> Airplane Tours Only.
-            </p>
-          </div>
-        )}
-        {location.id === 'wilmington' && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-            <p className="text-xs text-blue-800">
-              <span className="font-medium"></span> Airplane Tours Only.
-            </p>
-          </div>
-        )}
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            Select any tour above to book directly
-          </p>
-        </div>
+        <Button 
+          className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
+          onClick={(e) => {
+            e.stopPropagation();
+            onExplore?.(location.id);
+          }}
+        >
+          Explore Tours
+        </Button>
       </CardContent>
     </Card>
   );

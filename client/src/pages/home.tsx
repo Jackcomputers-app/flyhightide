@@ -4,10 +4,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { LocationCard } from '@/components/location-card';
 import { TestimonialCard } from '@/components/testimonial-card';
-import { TourInfoModal } from '@/components/tour-info-modal';
-
+import { SimpleBookingModal } from '@/components/simple-booking-modal';
 import { Logo } from '@/components/logo';
-import { locations, Tour } from '@/data/tours';
+import { locations } from '@/data/tours';
 import { testimonials, getRandomTestimonials } from '@/data/testimonials';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { 
@@ -24,26 +23,20 @@ import {
   Facebook,
   Instagram
 } from 'lucide-react';
-import { Link } from 'wouter';
 
 export default function Home() {
-
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState<string | undefined>();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLocationMenuOpen, setIsLocationMenuOpen] = useState(false);
-  const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
-  const [isTourInfoOpen, setIsTourInfoOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const randomTestimonials = getRandomTestimonials(3);
 
-  const scrollToLocations = () => {
-    scrollToSection('locations');
+  const openBooking = (location?: string) => {
+    setSelectedLocation(location);
+    setIsBookingOpen(true);
     setIsMobileMenuOpen(false);
-  };
-
-  const handleTourInfo = (tour: Tour) => {
-    setSelectedTour(tour);
-    setIsTourInfoOpen(true);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -101,21 +94,18 @@ export default function Home() {
                 >
                   Reviews
                 </button>
-                <Link href="/compare" className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors">
-                  Compare Flights
-                </Link>
-                <Link href="/bookings" className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors">
-                  View Bookings
-                </Link>
-                <Link href="/contact" className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors">
-                  Contact
-                </Link>
-                <button
-                  onClick={() => scrollToSection('locations')}
-                  className="bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
+                <a
+                  href="/bookings"
+                  className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors"
                 >
-                  View Tours
-                </button>
+                  View Bookings
+                </a>
+                <Button
+                  onClick={() => openBooking()}
+                  className="bg-ocean-blue hover:bg-blue-600 text-white font-medium"
+                >
+                  Book a Tour
+                </Button>
               </div>
             </div>
             
@@ -161,39 +151,27 @@ export default function Home() {
               >
                 Reviews
               </button>
-              <Link
-                href="/compare"
-                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-ocean-blue"
-              >
-                Compare Flights
-              </Link>
-              <Link
+              <a
                 href="/bookings"
                 className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-ocean-blue"
               >
                 View Bookings
-              </Link>
-              <Link
-                href="/contact"
-                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-ocean-blue"
+              </a>
+              <Button
+                onClick={() => openBooking()}
+                className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium"
               >
-                Contact
-              </Link>
-              <button
-                onClick={scrollToLocations}
-                className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
-              >
-                View Tours
-              </button>
+                Book a Tour
+              </Button>
             </div>
           </div>
         )}
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center">
+      <section id="home" className="relative h-screen flex items-center justify-center">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url("https://flyhightide.com/_astro/high-tide-helicopter-with-pilot-ready-to-takeoff.FFBadvWW.jpg")'
           }}
@@ -253,7 +231,7 @@ export default function Home() {
             </Collapsible>
           </div>
           
-          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-6">
             <Button
               onClick={() => scrollToSection('locations')}
               size="lg"
@@ -262,15 +240,6 @@ export default function Home() {
             >
               View All Locations
             </Button>
-            <Link href="/compare">
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-white/10 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm"
-              >
-                Compare Flights
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
@@ -290,7 +259,7 @@ export default function Home() {
               <div key={location.id} id={`location-${location.id}`}>
                 <LocationCard
                   location={location}
-                  onTourInfo={handleTourInfo}
+                  onExplore={(locationId) => openBooking(locationId)}
                 />
               </div>
             ))}
@@ -488,19 +457,6 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-gray-900 mb-2">Wilmington, NC (KILM) </h4>
-                        <div className="space-y-2">
-                          <div className="flex items-center text-gray-600">
-                            <MapPin className="w-4 h-4 mr-2" />
-                            <span></span>
-                          </div>
-                          <div className="flex items-center text-gray-600">
-                            <Phone className="w-4 h-4 mr-2" />
-                            <span><a href="tel:+1 (910) 477 1926" className="text-blue-500 hover:underline"> +1 (910) 477 1926</a></span>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </CardContent>
                 </CollapsibleContent>
@@ -514,12 +470,12 @@ export default function Home() {
       {isMobile && (
         <div className="fixed bottom-4 right-4 z-40">
           <Button
-            onClick={scrollToLocations}
+            onClick={() => openBooking()}
             size="lg"
             className="bg-ocean-blue hover:bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg font-medium"
           >
             <Plane className="w-5 h-5 mr-2" />
-            View Tours
+            Book Now
           </Button>
         </div>
       )}
@@ -537,16 +493,15 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Locations</h4>
               <ul className="space-y-2 text-gray-300">
-                <li>Southport, NC(KSUT)</li>
-                <li>St Simons Island, GA(KSSI)</li>
-                <li>Wilmington, NC(KILM)</li>
+                <li>Southport, NC</li>
+                <li>St Simons Island, GA</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-gray-300">
+                <li>Ambulance Tours</li>
                 <li>Airplane Tours</li>
-                <li>Helicopter Tours</li>
                 <li>Scenic Flights</li>
               </ul>
             </div>
@@ -568,14 +523,12 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Tour Info Modal */}
-      <TourInfoModal
-        tour={selectedTour}
-        isOpen={isTourInfoOpen}
-        onClose={() => setIsTourInfoOpen(false)}
-        locationName={selectedTour ? locations.find(loc => loc.tours.some(t => t.id === selectedTour.id))?.name || '' : ''}
+      {/* Booking Modal */}
+      <SimpleBookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        initialLocation={selectedLocation}
       />
-
     </div>
   );
 }

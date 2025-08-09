@@ -1,4 +1,4 @@
-import { users, bookings, contacts, type User, type InsertUser, type Booking, type InsertBooking, type Contact, type InsertContact } from "@shared/schema";
+import { users, bookings, type User, type InsertUser, type Booking, type InsertBooking } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -9,8 +9,6 @@ export interface IStorage {
   createBooking(booking: InsertBooking): Promise<Booking>;
   getBookings(): Promise<Booking[]>;
   getBookingsByEmail(email: string): Promise<Booking[]>;
-  createContact(contact: InsertContact): Promise<Contact>;
-  getContacts(): Promise<Contact[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -46,18 +44,6 @@ export class DatabaseStorage implements IStorage {
 
   async getBookingsByEmail(email: string): Promise<Booking[]> {
     return await db.select().from(bookings).where(eq(bookings.contactEmail, email));
-  }
-
-  async createContact(insertContact: InsertContact): Promise<Contact> {
-    const [contact] = await db
-      .insert(contacts)
-      .values(insertContact)
-      .returning();
-    return contact;
-  }
-
-  async getContacts(): Promise<Contact[]> {
-    return await db.select().from(contacts);
   }
 }
 

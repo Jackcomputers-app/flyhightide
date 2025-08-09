@@ -7,21 +7,13 @@ export default function NotFound() {
       <Card className="w-full max-w-md mx-4">
         <CardContent className="pt-6">
           <div className="flex mb-4 gap-2">
-            <h1 className="text-2xl font-bold text-gray-900">Opps it looks like we got lost.</h1>
+            <AlertCircle className="h-8 w-8 text-red-500" />
+            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
           </div>
 
           <p className="mt-4 text-sm text-gray-600">
-            Lets get that fixed.
+            Did you forget to add the page to the router?
           </p>
-
-          <div className="mt-6 text-center">
-            <button
-              className="px-4 py-2 bg-ocean-blue text-white rounded hover:bg-blue-600 transition"
-              onClick={() => window.location.href = "/"}
-            >
-              Go Home
-            </button>
-          </div>
         </CardContent>
       </Card>
     </div>

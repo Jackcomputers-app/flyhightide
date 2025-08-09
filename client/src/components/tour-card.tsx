@@ -1,17 +1,18 @@
 import { Tour } from '@/data/tours';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Plane, Ambulance, Clock, Users, Weight, DollarSign, Star, ExternalLink } from 'lucide-react';
+import { Plane, Ambulance, Clock, Users, Weight, DollarSign, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { testimonials } from '@/data/testimonials';
 
 interface TourCardProps {
   tour: Tour;
+  selected?: boolean;
+  onSelect?: (tour: Tour) => void;
   className?: string;
 }
 
-export const TourCard = ({ tour, className }: TourCardProps) => {
+export const TourCard = ({ tour, selected, onSelect, className }: TourCardProps) => {
   const randomTestimonial = testimonials[Math.floor(Math.random() * testimonials.length)];
   
   const getRouteColorStyle = (color: string) => {
@@ -34,23 +35,21 @@ export const TourCard = ({ tour, className }: TourCardProps) => {
         return { backgroundColor: '#9ca3af', color: '#fff', borderColor: '#6b7280' };
     }
   };
-
-  const handleBookNow = () => {
-    window.open(tour.bookingUrl, '_blank', 'noopener,noreferrer');
-  };
   
   return (
     <Card
       className={cn(
-        'transition-all hover:shadow-lg',
+        'cursor-pointer transition-all hover:shadow-lg',
+        selected && 'ring-2 ring-blue-500 bg-blue-50',
         className
       )}
+      onClick={() => onSelect?.(tour)}
     >
-      <div className="aspect-[4/3] sm:aspect-video w-full overflow-hidden rounded-t-lg">
+      <div className="aspect-video w-full overflow-hidden rounded-t-lg">
         <img
           src={tour.image}
           alt={tour.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover"
         />
       </div>
       <CardContent className="p-6">
@@ -135,16 +134,6 @@ export const TourCard = ({ tour, className }: TourCardProps) => {
               </Badge>
             ))}
           </div>
-        </div>
-
-        <div className="mt-6 pt-4 border-t border-gray-200">
-          <Button 
-            onClick={handleBookNow}
-            className="w-full bg-ocean-blue hover:bg-ocean-blue/90 text-white"
-          >
-            Book Now
-            <ExternalLink className="w-4 h-4 ml-2" />
-          </Button>
         </div>
       </CardContent>
     </Card>
