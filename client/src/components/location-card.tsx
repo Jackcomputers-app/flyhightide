@@ -145,8 +145,15 @@ export const LocationCard = ({
         )}
 
         {location.id === 'st-simons' && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
-            <p className="text-xs text-yellow-800">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+            <p className="text-xs text-blue-800">
+              <span className="font-medium"></span> Airplane Tours Only.
+            </p>
+          </div>
+        )}
+        {location.id === 'wilmington' && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+            <p className="text-xs text-blue-800">
               <span className="font-medium"></span> Airplane Tours Only.
             </p>
           </div>
