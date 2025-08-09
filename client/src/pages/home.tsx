@@ -295,7 +295,7 @@ export default function Home() {
               <div key={location.id} id={`location-${location.id}`}>
                 <LocationCard
                   location={location}
-                  onExplore={() => openBooking(location.id)}
+                  onExplore={(locationId) => openBooking(locationId)}
                 />
               </div>
             ))}
