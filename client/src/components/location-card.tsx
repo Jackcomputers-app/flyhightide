@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Tour } from '@/data/tours';
+import React, { useState } from 'react';
 
 interface LocationCardProps {
   location: {
@@ -21,22 +22,22 @@ interface LocationCardProps {
   className?: string;
 }
 
-export const LocationCard = ({ 
-  location, 
-  selected, 
-  onSelect, 
-  onExplore, 
+export const LocationCard = ({
+  location,
+  selected,
+  onSelect,
+  onExplore,
   onTourInfo,
-  className 
+  className
 }: LocationCardProps) => {
   const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
   const hasAirplane = location.tours.some(t => t.type === 'airplane');
-  
+
   // Calculate pricing information
   const helicopterTours = location.tours.filter(t => t.type === 'helicopter');
   const airplaneTours = location.tours.filter(t => t.type === 'airplane');
   const allTours = location.tours;
-  
+
   const minHelicopterPrice = helicopterTours.length > 0 ? Math.min(...helicopterTours.map(t => t.price)) : 0;
   const minAirplanePrice = airplaneTours.length > 0 ? Math.min(...airplaneTours.map(t => t.price)) : 0;
   const minOverallPrice = allTours.length > 0 ? Math.min(...allTours.map(t => t.price)) : 0;
@@ -62,6 +63,9 @@ export const LocationCard = ({
     }
   };
 
+  // Modal state for map image
+  const [showMapModal, setShowMapModal] = useState(false);
+
   return (
     <Card
       className={cn(
@@ -71,13 +75,45 @@ export const LocationCard = ({
       )}
       onClick={() => onSelect?.(location.id)}
     >
-      <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+      {/* Map image with modal */}
+      <div
+        className="aspect-video w-full overflow-hidden rounded-t-lg cursor-zoom-in"
+        onClick={e => {
+          e.stopPropagation();
+          setShowMapModal(true);
+        }}
+      >
         <img
           src={location.image}
           alt={location.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
       </div>
+      {/* Modal for larger map */}
+      {showMapModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+          onClick={() => setShowMapModal(false)}
+        >
+          <div
+            className="bg-white rounded-lg p-4 max-w-3xl w-full flex flex-col items-center"
+            onClick={e => e.stopPropagation()}
+          >
+            <img
+              src={location.image}
+              alt={location.name}
+              className="w-full h-auto max-h-[80vh] object-contain rounded"
+            />
+            <Button
+              className="mt-4 px-4 py-2 bg-ocean-blue text-white rounded hover:bg-blue-600"
+              onClick={() => setShowMapModal(false)}
+            >
+              Close
+            </Button>
+          </div>
+        </div>
+      )}
+
       <CardContent className="p-6">
         <div className="mb-3">
           <h3 className="text-xl font-semibold text-gray-900">{location.name}</h3>
@@ -111,30 +147,30 @@ export const LocationCard = ({
           )}
         </div>
 
-<div className="mb-4">
-  <div className="flex flex-wrap gap-2">
-    {location.tours.map((tour, index) => (
-      <div key={index} className="flex flex-col items-start mb-2">
-        <Badge 
-          variant="outline" 
-          className="text-xs font-medium border-2 mb-1"
-          style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
-        >
-          {tour.name}
-        </Badge>
-        <Button
-          className="bg-ocean-blue hover:bg-blue-600 text-white text-xs px-3 py-1"
-          onClick={(e) => {
-            e.stopPropagation();
-            onTourInfo?.(tour);
-          }}
-        >
-          Book Now
-        </Button>
-      </div>
-    ))}
-  </div>
-</div> 
+        <div className="mb-4">
+          <div className="flex flex-wrap gap-2">
+            {location.tours.map((tour, index) => (
+              <div key={index} className="flex flex-col items-start mb-2">
+                <Badge
+                  variant="outline"
+                  className="text-xs font-medium border-2 mb-1"
+                  style={tour.routeColor ? getRouteColorStyle(tour.routeColor) : undefined}
+                >
+                  {tour.name}
+                </Badge>
+                <Button
+                  className="bg-ocean-blue hover:bg-blue-600 text-white text-xs px-3 py-1"
+                  onClick={e => {
+                    e.stopPropagation();
+                    onTourInfo?.(tour);
+                  }}
+                >
+                  Book Now
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {location.id === 'southport' && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
