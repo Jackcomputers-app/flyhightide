@@ -470,6 +470,19 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900 mb-2">Wilmington, NC (KILM) </h4>
+                        <div className="space-y-2">
+                          <div className="flex items-center text-gray-600">
+                            <MapPin className="w-4 h-4 mr-2" />
+                            <span></span>
+                          </div>
+                          <div className="flex items-center text-gray-600">
+                            <Phone className="w-4 h-4 mr-2" />
+                            <span><a href="tel:+1 (910) 477 1926" className="text-blue-500 hover:underline"> +1 (910) 477 1926</a></span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </CollapsibleContent>
@@ -506,15 +519,16 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Locations</h4>
               <ul className="space-y-2 text-gray-300">
-                <li>Southport, NC</li>
-                <li>St Simons Island, GA</li>
+                <li>Southport, NC(KSUT)</li>
+                <li>St Simons Island, GA(KSSI)</li>
+                <li>Wilmington, NC(KILM)</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-gray-300">
-                <li>Ambulance Tours</li>
                 <li>Airplane Tours</li>
+                <li>Helicopter Tours</li>
                 <li>Scenic Flights</li>
               </ul>
             </div>

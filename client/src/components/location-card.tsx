@@ -139,11 +139,18 @@ export const LocationCard = ({
         {location.id === 'southport' && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
             <p className="text-xs text-blue-800">
-              <span className="font-medium">Special:</span> Only location with helicopter tours
+              <span className="font-medium"></span> Helicopter and Airplane Tours
             </p>
           </div>
         )}
 
+        {location.id === 'st-simons' && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+            <p className="text-xs text-yellow-800">
+              <span className="font-medium"></span> Airplane Tours Only.
+            </p>
+          </div>
+        )}
         <div className="text-center">
           <p className="text-sm text-gray-600">
             Select any tour above to book directly
