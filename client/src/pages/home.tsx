@@ -4,11 +4,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { LocationCard } from '@/components/location-card';
 import { TestimonialCard } from '@/components/testimonial-card';
-import { ClassicBookingModal } from '@/components/classic-booking-modal';
-import { FlightComparison } from '@/components/flight-comparison';
+import { TourInfoModal } from '@/components/tour-info-modal';
 
 import { Logo } from '@/components/logo';
-import { locations, tours, Tour } from '@/data/tours';
+import { locations, Tour } from '@/data/tours';
 import { testimonials, getRandomTestimonials } from '@/data/testimonials';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { 
@@ -32,9 +31,7 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLocationMenuOpen, setIsLocationMenuOpen] = useState(false);
   const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [isComparisonOpen, setIsComparisonOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState<string>('');
+  const [isTourInfoOpen, setIsTourInfoOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const randomTestimonials = getRandomTestimonials(3);
@@ -46,25 +43,7 @@ export default function Home() {
 
   const handleTourInfo = (tour: Tour) => {
     setSelectedTour(tour);
-    setSelectedLocation(tour.location);
-    setIsBookingOpen(true);
-  };
-
-  const handleBookTour = (locationId: string) => {
-    setSelectedLocation(locationId);
-    setSelectedTour(null);
-    setIsBookingOpen(true);
-  };
-
-  const handleCompareFlights = () => {
-    setIsComparisonOpen(true);
-  };
-
-  const handleSelectTourFromComparison = (tour: Tour) => {
-    setSelectedTour(tour);
-    setSelectedLocation(tour.location);
-    setIsComparisonOpen(false);
-    setIsBookingOpen(true);
+    setIsTourInfoOpen(true);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -129,12 +108,6 @@ export default function Home() {
                   Contact
                 </Link>
                 <button
-                  onClick={handleCompareFlights}
-                  className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  Compare Flights
-                </button>
-                <button
                   onClick={() => scrollToSection('locations')}
                   className="bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
                 >
@@ -198,14 +171,8 @@ export default function Home() {
                 Contact
               </Link>
               <button
-                onClick={handleCompareFlights}
-                className="w-full mb-2 border border-ocean-blue text-ocean-blue hover:bg-ocean-blue hover:text-white font-medium px-4 py-2 rounded-md transition-colors"
-              >
-                Compare Flights
-              </button>
-              <button
                 onClick={scrollToLocations}
-                className="w-full bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
+                className="w-full mt-2 bg-ocean-blue hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors"
               >
                 View Tours
               </button>
@@ -277,21 +244,14 @@ export default function Home() {
             </Collapsible>
           </div>
           
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              onClick={handleCompareFlights}
-              size="lg"
-              className="bg-white text-ocean-blue hover:bg-gray-100 font-semibold px-8 py-4"
-            >
-              Compare All Flights
-            </Button>
+          <div className="mt-6">
             <Button
               onClick={() => scrollToSection('locations')}
               size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-ocean-blue font-semibold px-8 py-4"
+              variant="ghost"
+              className="text-white hover:text-gray-200 underline"
             >
-              Browse by Location
+              View All Locations
             </Button>
           </div>
         </div>
@@ -313,7 +273,6 @@ export default function Home() {
                 <LocationCard
                   location={location}
                   onTourInfo={handleTourInfo}
-                  onBookTour={handleBookTour}
                 />
               </div>
             ))}
@@ -342,8 +301,8 @@ export default function Home() {
               <div className="w-16 h-16 bg-ocean-blue rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold text-xl">2</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Compare & Choose</h3>
-              <p className="text-gray-600">Compare flights side-by-side or browse by location</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Pick a Tour</h3>
+              <p className="text-gray-600">Select from our scenic route options</p>
             </div>
             
             <div className="text-center">
@@ -591,20 +550,12 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Classic Booking Modal */}
-      <ClassicBookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        initialLocation={selectedLocation}
-        initialTour={selectedTour || undefined}
-      />
-
-      {/* Flight Comparison Modal */}
-      <FlightComparison
-        isOpen={isComparisonOpen}
-        onClose={() => setIsComparisonOpen(false)}
-        tours={tours}
-        onSelectTour={handleSelectTourFromComparison}
+      {/* Tour Info Modal */}
+      <TourInfoModal
+        tour={selectedTour}
+        isOpen={isTourInfoOpen}
+        onClose={() => setIsTourInfoOpen(false)}
+        locationName={selectedTour ? locations.find(loc => loc.tours.some(t => t.id === selectedTour.id))?.name || '' : ''}
       />
 
     </div>
