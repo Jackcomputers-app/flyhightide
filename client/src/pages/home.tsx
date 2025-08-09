@@ -4,9 +4,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { LocationCard } from '@/components/location-card';
 import { TestimonialCard } from '@/components/testimonial-card';
+import { TourInfoModal } from '@/components/tour-info-modal';
 
 import { Logo } from '@/components/logo';
-import { locations } from '@/data/tours';
+import { locations, Tour } from '@/data/tours';
 import { testimonials, getRandomTestimonials } from '@/data/testimonials';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { 
@@ -29,6 +30,8 @@ export default function Home() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLocationMenuOpen, setIsLocationMenuOpen] = useState(false);
+  const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
+  const [isTourInfoOpen, setIsTourInfoOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const randomTestimonials = getRandomTestimonials(3);
@@ -36,6 +39,11 @@ export default function Home() {
   const scrollToLocations = () => {
     scrollToSection('locations');
     setIsMobileMenuOpen(false);
+  };
+
+  const handleTourInfo = (tour: Tour) => {
+    setSelectedTour(tour);
+    setIsTourInfoOpen(true);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -264,6 +272,7 @@ export default function Home() {
               <div key={location.id} id={`location-${location.id}`}>
                 <LocationCard
                   location={location}
+                  onTourInfo={handleTourInfo}
                 />
               </div>
             ))}
@@ -474,12 +483,12 @@ export default function Home() {
       {isMobile && (
         <div className="fixed bottom-4 right-4 z-40">
           <Button
-            onClick={() => openBooking()}
+            onClick={scrollToLocations}
             size="lg"
             className="bg-ocean-blue hover:bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg font-medium"
           >
             <Plane className="w-5 h-5 mr-2" />
-            Book Now
+            View Tours
           </Button>
         </div>
       )}
@@ -527,7 +536,13 @@ export default function Home() {
         </div>
       </footer>
 
-
+      {/* Tour Info Modal */}
+      <TourInfoModal
+        tour={selectedTour}
+        isOpen={isTourInfoOpen}
+        onClose={() => setIsTourInfoOpen(false)}
+        locationName={selectedTour ? locations.find(loc => loc.tours.some(t => t.id === selectedTour.id))?.name || '' : ''}
+      />
 
     </div>
   );
