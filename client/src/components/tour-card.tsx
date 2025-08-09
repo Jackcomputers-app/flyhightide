@@ -46,11 +46,11 @@ export const TourCard = ({ tour, className }: TourCardProps) => {
         className
       )}
     >
-      <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+      <div className="aspect-[4/3] sm:aspect-video w-full overflow-hidden rounded-t-lg">
         <img
           src={tour.image}
           alt={tour.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
       </div>
       <CardContent className="p-6">

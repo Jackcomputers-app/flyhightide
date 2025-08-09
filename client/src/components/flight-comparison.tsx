@@ -189,11 +189,11 @@ export const FlightComparison = ({ tours, selectedTours = [], onSelectionChange 
 
                     <CardContent className="space-y-4">
                       {/* Tour Image */}
-                      <div className="aspect-video w-full overflow-hidden rounded-lg">
+                      <div className="aspect-[4/3] w-full overflow-hidden rounded-lg">
                         <img
                           src={tour.image}
                           alt={tour.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
                       </div>
 

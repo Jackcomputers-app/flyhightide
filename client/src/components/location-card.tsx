@@ -77,7 +77,7 @@ export const LocationCard = ({
     >
       {/* Map image with modal */}
       <div
-        className="aspect-video w-full overflow-hidden rounded-t-lg cursor-zoom-in"
+        className="aspect-[4/3] sm:aspect-video w-full overflow-hidden rounded-t-lg cursor-zoom-in bg-gray-50"
         onClick={e => {
           e.stopPropagation();
           setShowMapModal(true);
@@ -86,7 +86,7 @@ export const LocationCard = ({
         <img
           src={location.image}
           alt={location.name}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
       </div>
       {/* Modal for larger map */}
