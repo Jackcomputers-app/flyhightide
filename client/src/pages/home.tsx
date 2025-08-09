@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { LocationCard } from '@/components/location-card';
 import { TestimonialCard } from '@/components/testimonial-card';
-import { BookingModal } from '@/components/booking-modal';
+import { TourInfoModal } from '@/components/tour-info-modal';
 
 import { Logo } from '@/components/logo';
 import { locations, Tour } from '@/data/tours';
@@ -27,19 +27,14 @@ import {
 import { Link } from 'wouter';
 
 export default function Home() {
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState<string | undefined>();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLocationMenuOpen, setIsLocationMenuOpen] = useState(false);
+  const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
+  const [isTourInfoOpen, setIsTourInfoOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const randomTestimonials = getRandomTestimonials(3);
-
-  const openBooking = (location?: string) => {
-    setSelectedLocation(location);
-    setIsBookingOpen(true);
-    setIsMobileMenuOpen(false);
-  };
 
   const scrollToLocations = () => {
     scrollToSection('locations');
@@ -295,7 +290,7 @@ export default function Home() {
               <div key={location.id} id={`location-${location.id}`}>
                 <LocationCard
                   location={location}
-                  onExplore={(locationId) => openBooking(locationId)}
+                  onTourInfo={handleTourInfo}
                 />
               </div>
             ))}
@@ -573,11 +568,12 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Booking Modal */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        initialLocation={selectedLocation}
+      {/* Tour Info Modal */}
+      <TourInfoModal
+        tour={selectedTour}
+        isOpen={isTourInfoOpen}
+        onClose={() => setIsTourInfoOpen(false)}
+        locationName={selectedTour ? locations.find(loc => loc.tours.some(t => t.id === selectedTour.id))?.name || '' : ''}
       />
 
     </div>

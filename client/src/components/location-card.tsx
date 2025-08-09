@@ -162,7 +162,7 @@ export const LocationCard = ({
                   className="bg-ocean-blue hover:bg-blue-600 text-white text-xs px-3 py-1"
                   onClick={e => {
                     e.stopPropagation();
-                    onExplore?.(location.id);
+                    onTourInfo?.(tour);
                   }}
                 >
                   Book Now
@@ -195,13 +195,9 @@ export const LocationCard = ({
           </div>
         )}
         <div className="text-center">
-          <Button
-            onClick={() => onExplore?.(location.id)}
-            size="lg"
-            className="w-full bg-ocean-blue hover:bg-blue-600 text-white font-medium"
-          >
-            Explore Tours
-          </Button>
+          <p className="text-sm text-gray-600">
+            Select any tour above to book directly
+          </p>
         </div>
       </CardContent>
     </Card>
