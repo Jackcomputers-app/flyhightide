@@ -101,6 +101,9 @@ export default function Home() {
                 >
                   Reviews
                 </button>
+                <Link href="/compare" className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors">
+                  Compare Flights
+                </Link>
                 <Link href="/bookings" className="text-gray-700 hover:text-ocean-blue px-3 py-2 text-sm font-medium transition-colors">
                   View Bookings
                 </Link>
@@ -158,6 +161,12 @@ export default function Home() {
               >
                 Reviews
               </button>
+              <Link
+                href="/compare"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-ocean-blue"
+              >
+                Compare Flights
+              </Link>
               <Link
                 href="/bookings"
                 className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-ocean-blue"
@@ -244,7 +253,7 @@ export default function Home() {
             </Collapsible>
           </div>
           
-          <div className="mt-6">
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={() => scrollToSection('locations')}
               size="lg"
@@ -253,6 +262,15 @@ export default function Home() {
             >
               View All Locations
             </Button>
+            <Link href="/compare">
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-white/10 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-sm"
+              >
+                Compare Flights
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
