@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Tour } from '@/data/tours';
 
 interface LocationCardProps {
   location: {
@@ -11,11 +12,12 @@ interface LocationCardProps {
     description: string;
     note: string;
     image: string;
-    tours: any[];
+    tours: Tour[];
   };
   selected?: boolean;
   onSelect?: (locationId: string) => void;
   onExplore?: (locationId: string) => void;
+  onTourInfo?: (tour: Tour) => void;
   className?: string;
 }
 
@@ -24,6 +26,7 @@ export const LocationCard = ({
   selected, 
   onSelect, 
   onExplore, 
+  onTourInfo,
   className 
 }: LocationCardProps) => {
   const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
@@ -123,7 +126,7 @@ export const LocationCard = ({
           className="bg-ocean-blue hover:bg-blue-600 text-white text-xs px-3 py-1"
           onClick={(e) => {
             e.stopPropagation();
-            window.open(tour.bookingUrl, '_blank');
+            onTourInfo?.(tour);
           }}
         >
           Book Now
@@ -141,15 +144,11 @@ export const LocationCard = ({
           </div>
         )}
 
-        <Button 
-          className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
-          onClick={(e) => {
-            e.stopPropagation();
-            onExplore?.(location.id);
-          }}
-        >
-          Explore Tours
-        </Button>
+        <div className="text-center">
+          <p className="text-sm text-gray-600">
+            Select any tour above to book directly
+          </p>
+        </div>
       </CardContent>
     </Card>
   );
