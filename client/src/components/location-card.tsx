@@ -19,6 +19,7 @@ interface LocationCardProps {
   onSelect?: (locationId: string) => void;
   onExplore?: (locationId: string) => void;
   onTourInfo?: (tour: Tour) => void;
+  onBookTour?: (locationId: string) => void;
   className?: string;
 }
 
@@ -28,6 +29,7 @@ export const LocationCard = ({
   onSelect,
   onExplore,
   onTourInfo,
+  onBookTour,
   className
 }: LocationCardProps) => {
   const hasHelicopter = location.tours.some(t => t.type === 'helicopter');
@@ -194,9 +196,18 @@ export const LocationCard = ({
             </p>
           </div>
         )}
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            Select any tour above to book directly
+        <div className="text-center space-y-2">
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              onBookTour?.(location.id);
+            }}
+            className="w-full bg-ocean-blue hover:bg-blue-600 text-white"
+          >
+            Book This Location
+          </Button>
+          <p className="text-xs text-gray-500">
+            Or select individual tours above to book directly
           </p>
         </div>
       </CardContent>
